@@ -11,6 +11,7 @@
 
   import Svg from './components/Svg.svelte';
   import Defs from './components/Defs.svelte';
+  import Axis from './components/Axis.svelte';
   import Stars from './components/Stars.svelte';
 
   export let size = 0;
@@ -80,6 +81,7 @@
 >
   <Svg {size}>
     <Defs />
+    <Axis data={renderedData} {skyScale} />
     <Stars data={renderedData} />
   </Svg>
 </div>
