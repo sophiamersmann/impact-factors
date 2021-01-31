@@ -10,6 +10,7 @@
   } from 'd3';
 
   import Svg from './components/Svg.svelte';
+  import Defs from './components/Defs.svelte';
   import Stars from './components/Stars.svelte';
 
   export let size = 0;
@@ -78,6 +79,7 @@
   style="width: {size}px; height: {size}px"
 >
   <Svg {size}>
+    <Defs />
     <Stars data={renderedData} />
   </Svg>
 </div>

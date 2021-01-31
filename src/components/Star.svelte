@@ -12,5 +12,6 @@
     cy={y}
     r={r}
     fill={starColor}
+    filter="url(#glow)"
   />
 </g>
