@@ -4,10 +4,13 @@
     ascending,
     scalePoint,
     scaleLinear,
+    scaleSqrt,
     extent,
+    pointRadial,
   } from 'd3';
 
   import Svg from './components/Svg.svelte';
+  import Stars from './components/Stars.svelte';
 
   export let size = 0;
 
@@ -24,6 +27,7 @@
     const year = +d.Year;
     const volume = +d.Volume;
     const issue = +d.Issue;
+    const page = { start: +d['Page start'], end: +d['Page end'] };
 
     return {
       authors: d.Authors,
@@ -32,26 +36,41 @@
       year,
       volume,
       issue,
-      location: [year, volume, issue].join('/'),
-      page: { start: +d['Page start'], end: +d['Page end'] },
+      page,
+      location: [year, volume, issue, page.start].join('/'),
       citedBy: +d['Cited by'],
       doi: d['DOI'],
     };
   }).then((loaded) => {
     data = loaded.sort(
       (a, b) =>
+        ascending(a.year, b.year) ||
         ascending(a.volume, b.volume) ||
         ascending(a.issue, b.issue) ||
-        ascending(a.page, b.page))
+        ascending(a.page.start, b.page.start))
   });
 
-  const angleScale = scalePoint()
+  $: angleScale = scalePoint()
     .domain(data.map((d) => d.location))
     .range([(2 * Math.PI) / data.length, 2 * Math.PI]);
 
-  const skyScale = scaleLinear()
+  $: skyScale = scaleLinear()
     .domain(extent(data, d => d.citedBy))
     .range([innerRadius, outerRadius]);
+
+  $: radiusScale = scaleSqrt()
+    .domain(extent(data, d => d.citedBy))
+    .range([starRadius.min, starRadius.max]);
+
+  $: renderedData = data.map((d) => {
+    const position = pointRadial(angleScale(d.location), skyScale(d.citedBy));
+    return {
+      x: position[0],
+      y: position[1],
+      r: radiusScale(d.citedBy),
+      data: d,
+    };
+  });
 </script>
 
 <div
@@ -59,8 +78,7 @@
   style="width: {size}px; height: {size}px"
 >
   <Svg {size}>
-    <circle fill="none" stroke="red" r={innerRadius} />
-    <circle fill="none" stroke="red" r={outerRadius} />
+    <Stars data={renderedData} />
   </Svg>
 </div>
 
