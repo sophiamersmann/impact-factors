@@ -15,6 +15,7 @@
   export let y = 0;
   export let r = 0;
   export let bright = true;
+  export let data;
 
   const color = tweened(starColor, {
     duration: $duration,
@@ -25,18 +26,18 @@
   $: color.set(bright ? starColor : darkStarColor);
 </script>
 
-<g class="star">
-  <circle
-    cx={x}
-    cy={y}
-    r={r}
-    fill={$color}
-  />
-</g>
+<circle
+  class="star"
+  cx={x}
+  cy={y}
+  r={r}
+  fill={$color}
+>
+  <title>{data.citedBy}</title>
+</circle>
 
 <style>
-  circle {
+  .star {
     filter: url(#glow);
-    pointer-events: none;
   }
 </style>

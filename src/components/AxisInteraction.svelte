@@ -20,15 +20,20 @@
   }
 
   function darkenSky(maxValue) {
-    dispatch('darkenSky', { maxValue: maxValue ?? Infinity });
+    dispatch('darkenSky', { maxValue });
+  }
+
+  function lightenSky(event) {
+    if (!event.relatedTarget.classList.contains('svg')) return;
+    dispatch('darkenSky', { maxValue: Infinity });
   }
 </script>
 
 <g class="axis-interaction">
   {#each data as d}
     <path
-      on:mouseover={() => darkenSky(d[1].value)}
-      on:mouseout={() => darkenSky()}
+      on:mouseenter={() => darkenSky(d[1].value)}
+      on:mouseleave={lightenSky}
       d={arc({ innerRadius: d[0].radius, outerRadius: d[1].radius })}
     />
   {/each}
