@@ -21,6 +21,7 @@
   let data = [];
   let renderedData = [];
   let radiusScale;
+  let maxValue = Infinity;
 
   $: innerRadius = 0.25 * (size / 2);
   $: outerRadius = (size - 2 * margin) / 2;
@@ -69,8 +70,13 @@
       y: position[1],
       r: radiusScale(d.citedBy),
       data: d,
+      bright: d.citedBy < maxValue,
     };
   });
+
+  function updateStarBrightness(event) {
+    maxValue = event.detail.maxValue;
+  }
 </script>
 
 <div
@@ -79,7 +85,11 @@
 >
   <Svg {size}>
     <Defs />
-    <Axis data={renderedData} />
+    <Axis
+      data={renderedData}
+      {maxValue}
+      on:darkenSky={updateStarBrightness}
+    />
     <Stars data={renderedData} />
   </Svg>
 </div>

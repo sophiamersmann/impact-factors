@@ -1,14 +1,14 @@
 <script>
   import { quantile } from 'd3-array';
 
-  import AxisLine from './AxisLine.svelte';
+  import AxisLines from './AxisLines.svelte';
+  import AxisInteraction from './AxisInteraction.svelte';
 
   import { skyScale } from '../stores/scales';
   import { quantiles as rawQuantiles } from '../inputs/constants';
 
   export let data = [];
-
-  $: origin = $skyScale(0) || 0;
+  export let maxValue = Infinity;
 
   $: quantiles = rawQuantiles
     .map((q)=> {
@@ -18,13 +18,12 @@
         q,
         value,
         radius: $skyScale(value),
+        selected: value === maxValue,
       };
     });
 </script>
 
 <g class="axis">
-  <AxisLine radius={origin} />
-  {#each quantiles as quantile}
-    <AxisLine radius={quantile.radius} />
-	{/each}
+  <AxisInteraction {quantiles} on:darkenSky />
+  <AxisLines {quantiles} />
 </g>
