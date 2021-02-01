@@ -1,6 +1,4 @@
 <script>
-  import { universeBackground as bgColor } from '../inputs/colors';
-
   export let size = 0;
 </script>
 
@@ -8,7 +6,6 @@
   width={size}
   height={size}
   viewBox="{-size/2} {-size/2} {size} {size}"
-  style="background: radial-gradient({bgColor.in} 0%, {bgColor.out} 100%)"
 >
   <slot />
 </svg>
