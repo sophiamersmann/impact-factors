@@ -23,5 +23,6 @@
     dominant-baseline: middle;
     text-anchor: middle;
     fill: white;
+    pointer-events: none;
   }
 </style>
