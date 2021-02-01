@@ -2,6 +2,7 @@
   import { interpolateLab } from 'd3-interpolate';
 
   import { tweened } from 'svelte/motion';
+  import { quadIn } from 'svelte/easing';
 
   import { duration } from '../stores/configurations';
 
@@ -18,6 +19,7 @@
   const color = tweened(starColor, {
     duration: $duration,
     interpolate: interpolateLab,
+    easing: quadIn,
   });
 
   $: color.set(bright ? starColor : darkStarColor);
