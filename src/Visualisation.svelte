@@ -2,8 +2,6 @@
   import {
     csv,
     ascending,
-    scalePoint,
-    scaleLinear,
     scaleSqrt,
     extent,
     pointRadial,
@@ -14,6 +12,9 @@
   import Axis from './components/Axis.svelte';
   import Stars from './components/Stars.svelte';
 
+  import setDimScales from './utils/scales';
+  import { angleScale, skyScale } from './stores/scales';
+
   export let size = 0;
 
   const dataPath = 'data/nature2019.csv';
@@ -22,8 +23,6 @@
 
   let data = [];
   let renderedData = [];
-  let angleScale;
-  let skyScale;
   let radiusScale;
 
   $: innerRadius = 0.25 * (size / 2);
@@ -56,13 +55,7 @@
         ascending(a.page.start, b.page.start))
   });
 
-  $: angleScale = scalePoint()
-      .domain(data.map((d) => d.location))
-      .range([(2 * Math.PI) / data.length, 2 * Math.PI]);
-    
-  $: skyScale = scaleLinear()
-    .domain(extent(data, d => d.citedBy))
-    .range([innerRadius, outerRadius]);
+  $: setDimScales(data, innerRadius, outerRadius);
 
   $: radiusScale = scaleSqrt()
     .domain(extent(data, d => d.citedBy))
@@ -70,8 +63,8 @@
 
   $: renderedData = data.map((d) => {
     const position = pointRadial(
-      angleScale(d.location),
-      skyScale(d.citedBy)
+      $angleScale(d.location),
+      $skyScale(d.citedBy)
     );
 
     return {
@@ -89,7 +82,7 @@
 >
   <Svg {size}>
     <Defs />
-    <Axis data={renderedData} {skyScale} />
+    <Axis data={renderedData} />
     <Stars data={renderedData} />
   </Svg>
 </div>

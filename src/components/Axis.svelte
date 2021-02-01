@@ -3,10 +3,12 @@
 
   import AxisLine from './AxisLine.svelte';
 
+  import { skyScale } from '../stores/scales';
   import { quantiles as rawQuantiles } from '../inputs/constants';
 
   export let data = [];
-  export let skyScale;
+
+  $: origin = $skyScale(0) || 0;
 
   $: quantiles = rawQuantiles
     .map((q)=> {
@@ -15,13 +17,13 @@
       return {
         q,
         value,
-        radius: skyScale(value),
+        radius: $skyScale(value),
       };
     });
 </script>
 
 <g class="axis">
-  <AxisLine radius={skyScale(0)} />
+  <AxisLine radius={origin} />
   {#each quantiles as quantile}
     <AxisLine radius={quantile.radius} />
 	{/each}
