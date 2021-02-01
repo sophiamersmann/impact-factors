@@ -1,8 +1,5 @@
-import {
-  scalePoint,
-  scaleLinear,
-  extent,
-} from 'd3';
+import { extent } from 'd3-array';
+import { scalePoint, scaleLinear } from 'd3-scale';
 
 import { angleScale, skyScale } from '../stores/scales';
 
