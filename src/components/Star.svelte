@@ -3,6 +3,8 @@
 
   import { tweened } from 'svelte/motion';
 
+  import { duration } from '../stores/configurations';
+
   import {
     star as starColor,
     darkStar as darkStarColor
@@ -14,7 +16,7 @@
   export let bright = true;
 
   const color = tweened(starColor, {
-    duration: 400,
+    duration: $duration,
     interpolate: interpolateLab,
   });
 

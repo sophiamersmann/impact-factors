@@ -1,5 +1,5 @@
 <script>
-  import { interpolateNumber, interpolateLab } from 'd3-interpolate';
+  import { interpolateLab } from 'd3-interpolate';
 
   import { tweened } from 'svelte/motion';
 
@@ -8,17 +8,17 @@
     selectedAxisLine as selectedLineColor
   } from '../inputs/colors';
 
+  import { shortDuration } from '../stores/configurations';
+
   export let radius = 0;
   export let selected = false;
 
-  const duration = 200;
   const color = tweened(lineColor, {
-    duration,
+    duration: $shortDuration,
     interpolate: interpolateLab,
   });
   const opacity = tweened(0.2, {
-    duration,
-    interpolate: interpolateNumber,
+    duration: $shortDuration,
   })
 
   $: color.set(selected ? selectedLineColor : lineColor);

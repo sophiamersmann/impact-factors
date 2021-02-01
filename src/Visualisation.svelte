@@ -6,6 +6,7 @@
 
   import Svg from './components/Svg.svelte';
   import Defs from './components/Defs.svelte';
+  import Center from './components/Center.svelte';
   import Axis from './components/Axis.svelte';
   import Stars from './components/Stars.svelte';
 
@@ -20,6 +21,7 @@
 
   let data = [];
   let renderedData = [];
+  let brightData = [];
   let radiusScale;
   let maxValue = Infinity;
 
@@ -74,6 +76,8 @@
     };
   });
 
+  $: brightData = renderedData.filter((d) => d.bright);
+
   function updateStarBrightness(event) {
     maxValue = event.detail.maxValue;
   }
@@ -90,6 +94,7 @@
       {maxValue}
       on:darkenSky={updateStarBrightness}
     />
+    <Center data={brightData} />
     <Stars data={renderedData} />
   </Svg>
 </div>
