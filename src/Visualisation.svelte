@@ -1,11 +1,8 @@
 <script>
-  import {
-    csv,
-    ascending,
-    scaleSqrt,
-    extent,
-    pointRadial,
-  } from 'd3';
+  import { csv } from 'd3-fetch';
+  import { ascending, extent } from 'd3-array';
+  import { scaleSqrt } from 'd3-scale';
+  import { pointRadial } from 'd3-shape';
 
   import Svg from './components/Svg.svelte';
   import Defs from './components/Defs.svelte';

@@ -1,5 +1,5 @@
 <script>
-  import { quantile } from 'd3';
+  import { quantile } from 'd3-array';
 
   import AxisLine from './AxisLine.svelte';
 
