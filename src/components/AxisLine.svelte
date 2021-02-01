@@ -1,4 +1,8 @@
 <script>
+  import { interpolateNumber, interpolateLab } from 'd3-interpolate';
+
+  import { tweened } from 'svelte/motion';
+
   import {
     axisLine as lineColor,
     selectedAxisLine as selectedLineColor
@@ -6,6 +10,19 @@
 
   export let radius = 0;
   export let selected = false;
+
+  const duration = 200;
+  const color = tweened(lineColor, {
+    duration,
+    interpolate: interpolateLab,
+  });
+  const opacity = tweened(0.2, {
+    duration,
+    interpolate: interpolateNumber,
+  })
+
+  $: color.set(selected ? selectedLineColor : lineColor);
+  $: opacity.set(selected ? 1 : 0.2);
 </script>
 
 <circle
@@ -13,8 +30,8 @@
   cx="0"
   cy="0"
   r={radius}
-  stroke={selected ? selectedLineColor : lineColor}
-  stroke-opacity={selected ? 1 : 0.2}
+  stroke={$color}
+  stroke-opacity={$opacity}
 />
 
 <style>

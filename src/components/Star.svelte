@@ -1,4 +1,8 @@
 <script>
+  import { interpolateLab } from 'd3-interpolate';
+
+  import { tweened } from 'svelte/motion';
+
   import {
     star as starColor,
     darkStar as darkStarColor
@@ -8,6 +12,13 @@
   export let y = 0;
   export let r = 0;
   export let bright = true;
+
+  const color = tweened(starColor, {
+    duration: 400,
+    interpolate: interpolateLab,
+  });
+
+  $: color.set(bright ? starColor : darkStarColor);
 </script>
 
 <g class="star">
@@ -15,7 +26,7 @@
     cx={x}
     cy={y}
     r={r}
-    fill={bright ? starColor : darkStarColor}
+    fill={$color}
   />
 </g>
 
