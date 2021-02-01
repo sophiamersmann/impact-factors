@@ -1,5 +1,5 @@
 <script>
-  export let radius;
+  export let radius = 0;
 </script>
 
 <circle

@@ -8,7 +8,11 @@
   $: minDim = Math.min(width, height) || 0;
 </script>
 
-<div class="app-wrapper" bind:clientWidth={width} bind:clientHeight={height}>
+<div
+  class="app-wrapper"
+  bind:clientWidth={width}
+  bind:clientHeight={height}
+>
   {#if width < 600}
     <Catch content={"width < 600"} />
   {:else}

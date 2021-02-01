@@ -1,9 +1,9 @@
 <script>
   import { star as starColor } from '../utils/colors';
 
-  export let x;
-  export let y;
-  export let r;
+  export let x = 0;
+  export let y = 0;
+  export let r = 0;
 </script>
 
 <g class="star">
@@ -12,6 +12,11 @@
     cy={y}
     r={r}
     fill={starColor}
-    filter="url(#glow)"
   />
 </g>
+
+<style>
+  circle {
+    filter: url(#glow);
+  }
+</style>

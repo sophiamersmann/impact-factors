@@ -5,13 +5,12 @@
 
   import { roundToOneDecimalPoint as round } from '../utils/round';
 
-  export let data;
+  export let data = [];
   export let skyScale;
 
   $: quantiles = range(0.1, 1.1, 0.1)
     .map((q)=> {
       const value = quantile(data.map(d => d.data.citedBy), round(q));
-      console.log(skyScale);
       return {
         q: round(q),
         value,

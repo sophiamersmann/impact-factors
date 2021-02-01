@@ -20,10 +20,14 @@
   const starRadius = { min: 0.5, max: 6 };
   const margin = starRadius.max;
 
+  let data = [];
+  let renderedData = [];
+  let angleScale;
+  let skyScale;
+  let radiusScale;
+
   $: innerRadius = 0.25 * (size / 2);
   $: outerRadius = (size - 2 * margin) / 2;
-
-  let data = [];
 
   csv(dataPath, (d) => {
     const year = +d.Year;
@@ -53,9 +57,9 @@
   });
 
   $: angleScale = scalePoint()
-    .domain(data.map((d) => d.location))
-    .range([(2 * Math.PI) / data.length, 2 * Math.PI]);
-
+      .domain(data.map((d) => d.location))
+      .range([(2 * Math.PI) / data.length, 2 * Math.PI]);
+    
   $: skyScale = scaleLinear()
     .domain(extent(data, d => d.citedBy))
     .range([innerRadius, outerRadius]);
@@ -65,7 +69,11 @@
     .range([starRadius.min, starRadius.max]);
 
   $: renderedData = data.map((d) => {
-    const position = pointRadial(angleScale(d.location), skyScale(d.citedBy));
+    const position = pointRadial(
+      angleScale(d.location),
+      skyScale(d.citedBy)
+    );
+
     return {
       x: position[0],
       y: position[1],
