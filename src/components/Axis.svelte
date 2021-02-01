@@ -1,18 +1,19 @@
 <script>
-  import { range, quantile } from 'd3';
+  import { quantile } from 'd3';
 
   import AxisLine from './AxisLine.svelte';
 
-  import { roundToOneDecimalPoint as round } from '../utils/round';
+  import { quantiles as rawQuantiles } from '../inputs/constants';
 
   export let data = [];
   export let skyScale;
 
-  $: quantiles = range(0.1, 1.1, 0.1)
+  $: quantiles = rawQuantiles
     .map((q)=> {
-      const value = quantile(data.map(d => d.data.citedBy), round(q));
+      const value = quantile(data.map(d => d.data.citedBy), q);
+
       return {
-        q: round(q),
+        q,
         value,
         radius: skyScale(value),
       };
@@ -20,6 +21,7 @@
 </script>
 
 <g class="axis">
+  <AxisLine radius={skyScale(0)} />
   {#each quantiles as quantile}
     <AxisLine radius={quantile.radius} />
 	{/each}
