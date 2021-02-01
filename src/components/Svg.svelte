@@ -1,5 +1,5 @@
 <script>
-  import { universeBackground as bgColor } from '../utils/colors';
+  import { universeBackground as bgColor } from '../inputs/colors';
 
   export let size = 0;
 </script>

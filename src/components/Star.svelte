@@ -1,5 +1,5 @@
 <script>
-  import { star as starColor } from '../utils/colors';
+  import { star as starColor } from '../inputs/colors';
 
   export let x = 0;
   export let y = 0;
