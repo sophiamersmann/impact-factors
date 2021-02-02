@@ -1,0 +1,3 @@
+<div>
+  Side Panel
+</div>

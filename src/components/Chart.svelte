@@ -4,25 +4,25 @@
   import { scaleSqrt } from 'd3-scale';
   import { pointRadial } from 'd3-shape';
 
-  import Svg from './components/Svg.svelte';
-  import Defs from './components/Defs.svelte';
-  import Center from './components/Center.svelte';
-  import AxisX from './components/AxisX.svelte';
-  import AxisY from './components/AxisY.svelte';
-  import Star from './components/Star.svelte';
+  import Svg from './Svg.svelte';
+  import Defs from './Defs.svelte';
+  import Center from './Center.svelte';
+  import AxisX from './AxisX.svelte';
+  import AxisY from './AxisY.svelte';
+  import Star from './Star.svelte';
 
   import {
     size,
     starRadius,
     innerRadius,
     outerRadius
-  } from './stores/dimensions';
+  } from '../stores/dimensions';
   import {
     angleScale,
     skyScale
-  } from './stores/scales';
+  } from '../stores/scales';
 
-  import setDimScales from './utils/scales';
+  import setDimScales from '../utils/scales';
 
   const dataPath = 'data/nature2019.csv';
 
