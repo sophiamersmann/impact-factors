@@ -9,7 +9,7 @@
   import Center from './components/Center.svelte';
   import AxisX from './components/AxisX.svelte';
   import AxisY from './components/AxisY.svelte';
-  import Stars from './components/Stars.svelte';
+  import Star from './components/Star.svelte';
 
   import {
     size,
@@ -100,8 +100,12 @@
         on:darkenSky={updateStarBrightness} />
       <AxisX data={renderedData} />
     </g>
+    <g class="stars">
+      {#each renderedData as d}
+        <Star {...d} />
+      {/each}
+    </g>
     <Center data={brightData} />
-    <Stars data={renderedData} />
   </Svg>
 </div>
 
