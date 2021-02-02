@@ -5,6 +5,8 @@
 
   import { size } from './stores/dimensions';
 
+  import loadData from './utils/loadData';
+
   export let width;
   export let height;
 
@@ -20,7 +22,9 @@
     <Catch content={"width < 600"} />
   {:else}
     <SidePanel />
-    <Visualization />
+    {#await loadData() then data}
+      <Visualization {data} />
+    {/await}
   {/if}
 </div>
 

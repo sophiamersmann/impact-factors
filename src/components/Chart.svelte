@@ -1,6 +1,5 @@
 <script>
-  import { csv } from 'd3-fetch';
-  import { ascending, extent } from 'd3-array';
+  import { extent } from 'd3-array';
   import { scaleSqrt } from 'd3-scale';
   import { pointRadial } from 'd3-shape';
 
@@ -24,40 +23,12 @@
 
   import setDimScales from '../utils/scales';
 
-  const dataPath = 'data/nature2019.csv';
+  export let data = [];
 
-  let data = [];
   let renderedData = [];
   let brightData = [];
   let radiusScale;
   let maxValue = Infinity;
-
-  csv(dataPath, (d) => {
-    const year = +d.Year;
-    const volume = +d.Volume;
-    const issue = +d.Issue;
-    const page = { start: +d['Page start'], end: +d['Page end'] };
-
-    return {
-      authors: d.Authors,
-      title: d.Title,
-      journal: d['Source title'],
-      year,
-      volume,
-      issue,
-      page,
-      location: [year, volume, issue, page.start].join('/'),
-      citedBy: +d['Cited by'],
-      doi: d['DOI'],
-    };
-  }).then((loaded) => {
-    data = loaded.sort(
-      (a, b) =>
-        ascending(a.year, b.year) ||
-        ascending(a.volume, b.volume) ||
-        ascending(a.issue, b.issue) ||
-        ascending(a.page.start, b.page.start))
-  });
 
   $: setDimScales(data, $innerRadius, $outerRadius);
 
