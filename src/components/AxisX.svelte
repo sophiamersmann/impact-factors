@@ -2,8 +2,9 @@
   import { rollups } from 'd3-array';
 
   import AxisXLine from './AxisXLine.svelte';
-  import AxisXLabel from './AxisXLabel.svelte';
+  import Label from './Label.svelte';
   
+  import { innerRadius } from '../stores/dimensions';
   import { angleScale } from '../stores/scales';
 
   export let data = [];
@@ -27,8 +28,13 @@
   </g>
   <g class="axis-labels">
     {#each labels as label, i}
-      <AxisXLabel id={i} angle={label.angle} text={label.text} />
+      <Label
+        pathId={`path-axis-x-label-${i}`}
+        radius={$innerRadius}
+        angle={label.angle}
+        text={label.text}
+        hanging
+      />
     {/each}
   </g>
 </g>
-

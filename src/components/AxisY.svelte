@@ -4,7 +4,7 @@
   import AxisInteraction from './AxisInteraction.svelte';
   import QuantileLine from './QuantileLine.svelte';
   import AxisYLine from './AxisYLine.svelte';
-  import AxisYLabel from './AxisYLabel.svelte';
+  import Label from './Label.svelte';
 
   import { skyScale } from '../stores/scales';
   import { quantiles as rawQuantiles, tickStep } from '../inputs/constants';
@@ -50,7 +50,12 @@
   </g>
   <g class="axis-labels">
     {#each lines as line}
-      <AxisYLabel {...line} />
+      <Label
+        pathId={`path-axis-y-label-${line.value}`}
+        radius={line.radius}
+        angle="0"
+        text={line.value}
+      />
     {/each}
   </g>
 </g>
