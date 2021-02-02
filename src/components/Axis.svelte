@@ -26,6 +26,6 @@
 
 <g class="axis">
   <AxisInteraction {quantiles} on:darkenSky />
-  <AxisX {quantiles} />
-  <AxisY {data} />
+  <AxisY {quantiles} />
+  <AxisX {data} />
 </g>
