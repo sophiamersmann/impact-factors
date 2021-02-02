@@ -3,6 +3,7 @@ import { scalePoint, scaleLinear } from 'd3-scale';
 
 import { angleScale, skyScale } from '../stores/scales';
 
+// TODO: To pass the value of stores feels weird
 const setDimScales = (data, innerRadius, outerRadius) => {
   if (!data) return;
   

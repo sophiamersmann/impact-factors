@@ -4,7 +4,7 @@
   export let quantiles = [];
 </script>
 
-<g class="axis-lines">
+<g class="axis axis-x">
   {#each quantiles as quantile}
     <AxisLine
       radius={quantile.radius}

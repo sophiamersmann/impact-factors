@@ -2,10 +2,12 @@
   import Catch from './Catch.svelte';
   import Visualisation from './Visualisation.svelte';
 
+  import { size } from './stores/dimensions';
+
   export let width;
   export let height;
 
-  $: minDim = Math.min(width, height) || 0;
+  $: size.set(Math.min(width, height) || 0);
 </script>
 
 <div
@@ -16,7 +18,7 @@
   {#if width < 600}
     <Catch content={"width < 600"} />
   {:else}
-    <Visualisation size={minDim} />
+    <Visualisation />
   {/if}
 </div>
 
@@ -24,6 +26,9 @@
   .app-wrapper {
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, var(--background-color-center) 0%, var(--background-color) 80%);
+    background: radial-gradient(
+      circle at center,
+      var(--background-color-center) 0%,
+      var(--background-color) 80%);
   }
 </style>

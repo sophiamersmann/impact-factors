@@ -1,7 +1,8 @@
 <script>
   import { quantile } from 'd3-array';
 
-  import AxisLines from './AxisLines.svelte';
+  import AxisX from './AxisX.svelte';
+  import AxisY from './AxisY.svelte';
   import AxisInteraction from './AxisInteraction.svelte';
 
   import { skyScale } from '../stores/scales';
@@ -25,5 +26,6 @@
 
 <g class="axis">
   <AxisInteraction {quantiles} on:darkenSky />
-  <AxisLines {quantiles} />
+  <AxisX {quantiles} />
+  <AxisY {data} />
 </g>

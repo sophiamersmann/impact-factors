@@ -10,23 +10,26 @@
   import Axis from './components/Axis.svelte';
   import Stars from './components/Stars.svelte';
 
-  import setDimScales from './utils/scales';
-  import { angleScale, skyScale } from './stores/scales';
+  import {
+    size,
+    starRadius,
+    innerRadius,
+    outerRadius
+  } from './stores/dimensions';
+  import {
+    angleScale,
+    skyScale
+  } from './stores/scales';
 
-  export let size = 0;
+  import setDimScales from './utils/scales';
 
   const dataPath = 'data/nature2019.csv';
-  const starRadius = { min: 0.5, max: 6 };
-  const margin = starRadius.max;
 
   let data = [];
   let renderedData = [];
   let brightData = [];
   let radiusScale;
   let maxValue = Infinity;
-
-  $: innerRadius = 0.25 * (size / 2);
-  $: outerRadius = (size - 2 * margin) / 2;
 
   csv(dataPath, (d) => {
     const year = +d.Year;
@@ -55,11 +58,11 @@
         ascending(a.page.start, b.page.start))
   });
 
-  $: setDimScales(data, innerRadius, outerRadius);
+  $: setDimScales(data, $innerRadius, $outerRadius);
 
   $: radiusScale = scaleSqrt()
     .domain(extent(data, d => d.citedBy))
-    .range([starRadius.min, starRadius.max]);
+    .range([$starRadius.min, $starRadius.max]);
 
   $: renderedData = data.map((d) => {
     const position = pointRadial(
@@ -85,9 +88,9 @@
 
 <div
   class="visualisation-wrapper"
-  style="width: {size}px; height: {size}px"
+  style="width: {$size}px; height: {$size}px"
 >
-  <Svg {size}>
+  <Svg>
     <Defs />
     <Axis
       data={renderedData}
