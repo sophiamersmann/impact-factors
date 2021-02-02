@@ -7,7 +7,8 @@
   import Svg from './components/Svg.svelte';
   import Defs from './components/Defs.svelte';
   import Center from './components/Center.svelte';
-  import Axis from './components/Axis.svelte';
+  import AxisX from './components/AxisX.svelte';
+  import AxisY from './components/AxisY.svelte';
   import Stars from './components/Stars.svelte';
 
   import {
@@ -92,11 +93,13 @@
 >
   <Svg>
     <Defs />
-    <Axis
-      data={renderedData}
-      {maxValue}
-      on:darkenSky={updateStarBrightness}
-    />
+    <g class="axis">
+      <AxisY
+        data={renderedData}
+        {maxValue}
+        on:darkenSky={updateStarBrightness} />
+      <AxisX data={renderedData} />
+    </g>
     <Center data={brightData} />
     <Stars data={renderedData} />
   </Svg>
