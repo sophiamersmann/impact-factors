@@ -24,7 +24,8 @@
   }
 
   function lightenSky(event) {
-    if (!event.relatedTarget.classList.contains('svg')) return;
+    const relatedTarget = event.relatedTarget;
+    if (relatedTarget && !relatedTarget.classList.contains('svg')) return;
     dispatch('darkenSky', { maxValue: Infinity });
   }
 </script>
