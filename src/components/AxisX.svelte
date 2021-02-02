@@ -35,5 +35,6 @@
   line {
     stroke: #ddd;
     stroke-opacity: 0.2;
+    pointer-events: none;
   }
 </style>

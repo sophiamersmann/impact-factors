@@ -1,12 +1,12 @@
 <script>
-  import AxisLine from './AxisLine.svelte';
+  import QuantileLine from './QuantileLine.svelte';
 
   export let quantiles = [];
 </script>
 
 <g class="axis axis-y">
   {#each quantiles as quantile}
-    <AxisLine
+    <QuantileLine
       radius={quantile.radius}
       selected={quantile.selected}
     />
