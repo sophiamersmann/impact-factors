@@ -2,10 +2,10 @@
   import { interpolateLab } from 'd3-interpolate';
 
   import { tweened } from 'svelte/motion';
-  import { quadIn, quadInOut } from 'svelte/easing';
+  import { quadIn, quadOut } from 'svelte/easing';
 
-  import { maxCitations, selectedJournal } from '../stores/selections';
-  import { duration } from '../stores/configurations';
+  import { maxCitations } from '../stores/selections';
+  import { duration, longDuration } from '../stores/configurations';
 
   import {
     star as starColor,
@@ -17,15 +17,14 @@
   export let r = 0;
   export let data;
 
-  let show = true;
   let bright = true;
 
-  $: show = data.journal === $selectedJournal;
   $: bright = data.citedBy < $maxCitations;
 
   const tweenedR = tweened(0, {
-    duration: 4 * $duration,
-    easing: quadInOut,
+    delay: 2 * Math.random() * $longDuration,
+    duration: $longDuration,
+    easing: quadOut,
   });
 
   const color = tweened(starColor, {
@@ -34,7 +33,7 @@
     easing: quadIn,
   });
 
-  $: tweenedR.set(show ? r : 0);
+  $: tweenedR.set(r);
   $: color.set(bright ? starColor : darkStarColor);
 </script>
 
