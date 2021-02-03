@@ -5,34 +5,29 @@
   import Label from './Label.svelte';
   
   import { innerRadius } from '../stores/dimensions';
-  import { angleScale } from '../stores/scales';
 
-  export let data = [];
+  export let selectedData = [];
 
   $: labels = rollups(
-    data,
-    (v) => v[0].data.doi,
+    selectedData,
+    (v) => v[0].angle,
     (d) => [d.data.year, d.data.volume].join('/')
-  ).map(([text, doi]) => ({
-    text: text.slice(2),
-    doi,
-    angle: $angleScale(doi),
-  }));
+  );
 </script>
 
 <g class="axis axis-x">
   <g class="axis-lines">
-    {#each labels as label}
-      <AxisXLine doi={label.doi} />
+    {#each labels as [, angle]}
+      <AxisXLine {angle} />
     {/each}
   </g>
   <g class="axis-labels">
-    {#each labels as label, i}
+    {#each labels as [text, angle], i}
       <Label
         pathId={`path-axis-x-label-${i}`}
         radius={$innerRadius}
-        angle={label.angle}
-        text={label.text}
+        {angle}
+        text={text.slice(2)}
         hanging
       />
     {/each}

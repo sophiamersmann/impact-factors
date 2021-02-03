@@ -10,14 +10,15 @@
   import { maxCitations } from '../stores/selections';
   import { quantiles as rawQuantiles, tickStep } from '../inputs/constants';
 
-  export let data = [];
+  export let selectedData = [];
 
   let quantiles = [];
   let lines = [];
 
   $: quantiles = rawQuantiles
     .map((q)=> {
-      const value = quantile(data.map(d => d.data.citedBy), q);
+      const value = quantile(
+        selectedData.map(d => d.data.citedBy), q);
 
       return {
         q,

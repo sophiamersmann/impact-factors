@@ -1,12 +1,12 @@
 <script>
-  import { extent } from 'd3-array';
-  import { scaleLinear, scaleSqrt } from 'd3-scale';
+  import { extent, groups } from 'd3-array';
+  import { scaleLinear, scaleSqrt, scalePoint } from 'd3-scale';
+  import { pointRadial } from 'd3-shape';
 
   import Chart from './components/Chart.svelte';
 
   import { innerRadius, outerRadius, starRadius } from './stores/dimensions';
   import { skyScale, radiusScale } from './stores/scales';
-  import { selectedJournal } from './stores/selections';
 
   export let data = [];
 
@@ -18,11 +18,29 @@
     .domain(extent(data, d => d.citedBy))
     .range([$starRadius.min, $starRadius.max]));
 
-  $: data = data
-    .map((d) => {
-      d.show = d.journal.toLowerCase() === $selectedJournal;
-      return d;
-    });
+  $: renderedData = groups(data, (d) => d.journal)
+    .map(([, values]) => {
+      const dois = values.map((d) => d.doi);
+      dois.push('pseudo');
+      const angleScale = scalePoint()
+        .domain(dois)
+        .range([0, 2 * Math.PI]);
+
+      return values.map((d) => {
+        const angle = angleScale(d.doi);
+        const position = pointRadial(
+          angle,
+          $skyScale(d.citedBy));
+
+        return {
+          angle,
+          x: position[0],
+          y: position[1],
+          r: $radiusScale(d.citedBy),
+          data: d,
+        };
+      });
+    }).flat();
 </script>
 
-<Chart {data} />
+<Chart data={renderedData} />

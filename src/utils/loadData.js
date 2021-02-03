@@ -7,7 +7,7 @@ const loadData = async () => {
   const data = await csv(dataPath, (d) => ({
     authors: d.Authors,
     title: d.Title,
-    journal: d['Source title'],
+    journal: d['Source title'].toLowerCase(),
     year: +d.Year,
     volume: +d.Volume,
     issue: +d.Issue,

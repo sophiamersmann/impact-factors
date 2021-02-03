@@ -1,11 +1,10 @@
 <script>
   import { interpolateLab } from 'd3-interpolate';
 
-  import { fade } from 'svelte/transition';
   import { tweened } from 'svelte/motion';
-  import { quadIn } from 'svelte/easing';
+  import { quadIn, quadInOut } from 'svelte/easing';
 
-  import { maxCitations } from '../stores/selections';
+  import { maxCitations, selectedJournal } from '../stores/selections';
   import { duration } from '../stores/configurations';
 
   import {
@@ -18,7 +17,16 @@
   export let r = 0;
   export let data;
 
+  let show = true;
+  let bright = true;
+
+  $: show = data.journal === $selectedJournal;
   $: bright = data.citedBy < $maxCitations;
+
+  const tweenedR = tweened(0, {
+    duration: 4 * $duration,
+    easing: quadInOut,
+  });
 
   const color = tweened(starColor, {
     duration: $duration,
@@ -26,22 +34,20 @@
     easing: quadIn,
   });
 
+  $: tweenedR.set(show ? r : 0);
   $: color.set(bright ? starColor : darkStarColor);
 </script>
 
 <circle
-  class="star"
+  class="star {bright ? 'bright' : ''}"
   cx={x}
   cy={y}
-  r={r}
+  r={$tweenedR}
   fill={$color}
-  transition:fade
->
-  <title>{data.citedBy}</title>
-</circle>
+/>
 
-<!-- <style>
-  .star {
+<style>
+  .star.bright {
     filter: url(#glow);
   }
-</style> -->
+</style>

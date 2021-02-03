@@ -1,50 +1,24 @@
 <script>
-  import { scalePoint } from 'd3-scale';
-  import { pointRadial } from 'd3-shape';
-
   import Svg from './Svg.svelte';
   import Defs from './Defs.svelte';
   import Center from './Center.svelte';
   import AxisX from './AxisX.svelte';
   import AxisY from './AxisY.svelte';
-  import Star from './Star.svelte';
+  import Stars from './Stars.svelte';
 
   import { size } from '../stores/dimensions';
-  import {
-    angleScale,
-    skyScale,
-    radiusScale,
-  } from '../stores/scales';
+  import { maxCitations, selectedJournal } from '../stores/selections';
 
   export let data = [];
 
-  let renderedData = [];
+  let selectedData = [];
+  let brightData = [];
 
-  $: {
-    const dois = data
-      .filter((d) => d.show)
-      .map((d) => d.doi);
-    dois.push('pseudo');
-    angleScale.set(scalePoint()
-      .domain(dois)
-      .range([0, 2 * Math.PI]));
-  }
+  $: selectedData = data
+    .filter((d) => d.data.journal === $selectedJournal);
 
-  $: renderedData = data
-    .filter((d) => d.show)
-    .map((d) => {
-      const position = pointRadial(
-        $angleScale(d.doi),
-        $skyScale(d.citedBy)
-      );
-
-      return {
-        x: position[0],
-        y: position[1],
-        r: $radiusScale(d.citedBy),
-        data: d,
-      };
-    });
+  $: brightData =  selectedData
+    .filter((d) => d.data.citedBy < $maxCitations);
 </script>
 
 <div
@@ -54,15 +28,11 @@
   <Svg>
     <Defs />
     <g class="axis">
-      <AxisY data={renderedData} />
-      <AxisX data={renderedData} />
+      <AxisY {selectedData} />
+      <AxisX {selectedData} />
     </g>
-    <g class="stars">
-      {#each renderedData as d (d.data.doi)}
-        <Star {...d} />
-      {/each}
-    </g>
-    <Center data={renderedData} />
+    <Stars {data} />
+    <Center {brightData} />
   </Svg>
 </div>
 

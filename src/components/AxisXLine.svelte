@@ -2,17 +2,16 @@
   import { pointRadial } from 'd3-shape';
 
   import { innerRadius, outerRadius } from '../stores/dimensions';
-  import { angleScale } from '../stores/scales';
 
-  export let doi = '';
+  export let angle = 0;
 
   const lineOffset = 10;
 
   let from = [];
   let to = [];
 
-  $: from = pointRadial($angleScale(doi), $innerRadius - lineOffset);
-  $: to = pointRadial($angleScale(doi), $outerRadius);
+  $: from = pointRadial(angle, $innerRadius - lineOffset);
+  $: to = pointRadial(angle, $outerRadius);
 </script>
 
 {#if from[0]}
