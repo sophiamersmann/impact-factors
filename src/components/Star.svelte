@@ -1,6 +1,7 @@
 <script>
   import { interpolateLab } from 'd3-interpolate';
 
+  import { fade } from 'svelte/transition';
   import { tweened } from 'svelte/motion';
   import { quadIn } from 'svelte/easing';
 
@@ -32,6 +33,7 @@
   cy={y}
   r={r}
   fill={$color}
+  transition:fade
 >
   <title>{data.citedBy}</title>
 </circle>

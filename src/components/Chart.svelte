@@ -1,6 +1,5 @@
 <script>
-  import { extent } from 'd3-array';
-  import { scaleSqrt } from 'd3-scale';
+  import { scalePoint } from 'd3-scale';
   import { pointRadial } from 'd3-shape';
 
   import Svg from './Svg.svelte';
@@ -10,46 +9,45 @@
   import AxisY from './AxisY.svelte';
   import Star from './Star.svelte';
 
-  import {
-    size,
-    starRadius,
-    innerRadius,
-    outerRadius
-  } from '../stores/dimensions';
+  import { size } from '../stores/dimensions';
   import {
     angleScale,
-    skyScale
+    skyScale,
+    radiusScale,
   } from '../stores/scales';
-
-  import setDimScales from '../utils/scales';
 
   export let data = [];
 
   let renderedData = [];
   let brightData = [];
-  let radiusScale;
   let maxValue = Infinity;
 
-  $: setDimScales(data, $innerRadius, $outerRadius);
+  $: {
+    const dois = data
+      .filter((d) => d.show)
+      .map((d) => d.doi);
+    dois.push('pseudo');
+    angleScale.set(scalePoint()
+      .domain(dois)
+      .range([0, 2 * Math.PI]));
+  }
 
-  $: radiusScale = scaleSqrt()
-    .domain(extent(data, d => d.citedBy))
-    .range([$starRadius.min, $starRadius.max]);
+  $: renderedData = data
+    .filter((d) => d.show)
+    .map((d) => {
+      const position = pointRadial(
+        $angleScale(d.doi),
+        $skyScale(d.citedBy)
+      );
 
-  $: renderedData = data.map((d) => {
-    const position = pointRadial(
-      $angleScale(d.location),
-      $skyScale(d.citedBy)
-    );
-
-    return {
-      x: position[0],
-      y: position[1],
-      r: radiusScale(d.citedBy),
-      data: d,
-      bright: d.citedBy < maxValue,
-    };
-  });
+      return {
+        x: position[0],
+        y: position[1],
+        r: $radiusScale(d.citedBy),
+        data: d,
+        bright: d.citedBy < maxValue,
+      };
+    });
 
   $: brightData = renderedData.filter((d) => d.bright);
 
@@ -72,7 +70,7 @@
       <AxisX data={renderedData} />
     </g>
     <g class="stars">
-      {#each renderedData as d}
+      {#each renderedData as d (d.data.doi)}
         <Star {...d} />
       {/each}
     </g>

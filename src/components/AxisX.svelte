@@ -11,19 +11,19 @@
 
   $: labels = rollups(
     data,
-    (v) => v[0].data.location,
+    (v) => v[0].data.doi,
     (d) => [d.data.year, d.data.volume].join('/')
-  ).map(([text, location]) => ({
+  ).map(([text, doi]) => ({
     text: text.slice(2),
-    location,
-    angle: $angleScale(location),
+    doi,
+    angle: $angleScale(doi),
   }));
 </script>
 
 <g class="axis axis-x">
   <g class="axis-lines">
     {#each labels as label}
-      <AxisXLine location={label.location} />
+      <AxisXLine doi={label.doi} />
     {/each}
   </g>
   <g class="axis-labels">

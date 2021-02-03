@@ -1,5 +1,5 @@
 <script>
-  import { max, quantile, range } from 'd3-array';
+  import { quantile, range } from 'd3-array';
   
   import AxisInteraction from './AxisInteraction.svelte';
   import QuantileLine from './QuantileLine.svelte';
@@ -27,7 +27,7 @@
       };
     });
 
-  $: lines = range(0, max(data, (d) => d.data.citedBy), tickStep)
+  $: lines = range(0, $skyScale.domain()[1], tickStep)
     .map((value) => ({
       value,
       radius: $skyScale(value),

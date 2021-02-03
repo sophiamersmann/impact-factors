@@ -4,23 +4,25 @@
   import { innerRadius, outerRadius } from '../stores/dimensions';
   import { angleScale } from '../stores/scales';
 
-  export let location = '';
+  export let doi = '';
 
   const lineOffset = 10;
 
   let from = [];
   let to = [];
 
-  $: from = pointRadial($angleScale(location), $innerRadius - lineOffset);
-  $: to = pointRadial($angleScale(location), $outerRadius);
+  $: from = pointRadial($angleScale(doi), $innerRadius - lineOffset);
+  $: to = pointRadial($angleScale(doi), $outerRadius);
 </script>
 
-<line
-  class="axis-line"
-  x1={from[0]}
-  y1={from[1]}
-  x2={to[0]}
-  y2={to[1]} />
+{#if from[0]}
+  <line
+    class="axis-line"
+    x1={from[0]}
+    y1={from[1]}
+    x2={to[0]}
+    y2={to[1]} />
+{/if}
 
 <style>
   line {
