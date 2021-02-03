@@ -2,7 +2,7 @@
   import { interpolateLab } from 'd3-interpolate';
 
   import { tweened } from 'svelte/motion';
-  import { quadOut } from 'svelte/transition';
+  import { quadOut } from 'svelte/easing';
 
   import {
     axisLine as lineColor,
