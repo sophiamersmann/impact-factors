@@ -19,8 +19,6 @@
   export let data = [];
 
   let renderedData = [];
-  let brightData = [];
-  let maxValue = Infinity;
 
   $: {
     const dois = data
@@ -45,15 +43,8 @@
         y: position[1],
         r: $radiusScale(d.citedBy),
         data: d,
-        bright: d.citedBy < maxValue,
       };
     });
-
-  $: brightData = renderedData.filter((d) => d.bright);
-
-  function updateStarBrightness(event) {
-    maxValue = event.detail.maxValue;
-  }
 </script>
 
 <div
@@ -63,10 +54,7 @@
   <Svg>
     <Defs />
     <g class="axis">
-      <AxisY
-        data={renderedData}
-        {maxValue}
-        on:darkenSky={updateStarBrightness} />
+      <AxisY data={renderedData} />
       <AxisX data={renderedData} />
     </g>
     <g class="stars">
@@ -74,7 +62,7 @@
         <Star {...d} />
       {/each}
     </g>
-    <Center data={brightData} />
+    <Center data={renderedData} />
   </Svg>
 </div>
 

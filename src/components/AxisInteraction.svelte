@@ -2,13 +2,11 @@
   import { pairs } from 'd3-array';
   import { arc as d3Arc } from 'd3-shape';
 
-  import { createEventDispatcher } from 'svelte';
+  import { maxCitations } from '../stores/selections';
 
   export let quantiles = [];
 
   let data = [];
-
-  const dispatch = createEventDispatcher();
 
   const arc = d3Arc()
     .startAngle(0)
@@ -20,13 +18,13 @@
   }
 
   function darkenSky(maxValue) {
-    dispatch('darkenSky', { maxValue });
+    maxCitations.set(maxValue);
   }
 
-  function lightenSky(event) {
+  function lightUpSky(event) {
     const relatedTarget = event.relatedTarget;
     if (relatedTarget && !relatedTarget.classList.contains('svg')) return;
-    dispatch('darkenSky', { maxValue: Infinity });
+    maxCitations.set(Infinity);
   }
 </script>
 
@@ -34,7 +32,7 @@
   {#each data as d}
     <path
       on:mouseenter={() => darkenSky(d[1].value)}
-      on:mouseleave={lightenSky}
+      on:mouseleave={lightUpSky}
       d={arc({ innerRadius: d[0].radius, outerRadius: d[1].radius })}
     />
   {/each}

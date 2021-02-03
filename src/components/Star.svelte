@@ -5,6 +5,7 @@
   import { tweened } from 'svelte/motion';
   import { quadIn } from 'svelte/easing';
 
+  import { maxCitations } from '../stores/selections';
   import { duration } from '../stores/configurations';
 
   import {
@@ -15,8 +16,9 @@
   export let x = 0;
   export let y = 0;
   export let r = 0;
-  export let bright = true;
   export let data;
+
+  $: bright = data.citedBy < $maxCitations;
 
   const color = tweened(starColor, {
     duration: $duration,
@@ -38,8 +40,8 @@
   <title>{data.citedBy}</title>
 </circle>
 
-<style>
+<!-- <style>
   .star {
     filter: url(#glow);
   }
-</style>
+</style> -->
