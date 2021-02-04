@@ -32,7 +32,7 @@
       <AxisX {selectedData} />
     </g>
     <Stars {data} />
-    <Center {brightData} />
+    <Center {selectedData} {brightData} />
   </Svg>
 </div>
 

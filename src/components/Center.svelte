@@ -1,28 +1,59 @@
 <script>
   import { mean } from 'd3-array';
 
-  import { tweened } from 'svelte/motion';
+  import NumberPair from './NumberPair.svelte';
 
-  import { duration } from '../stores/configurations';
+  import { innerRadius } from '../stores/dimensions';
 
+  export let selectedData = [];
   export let brightData = [];
 
-  const impactFactor = tweened(undefined, {
-    duration: $duration,
-  })
+  const gOffset = $innerRadius / 4;
+  const textOffset = 18;
 
-  $: impactFactor.set(mean(brightData, (d) => d.data.citedBy) || 0);
+  const starCount = (data) => data.length;
+  const computeImpactFactor = (data) => mean(data, (d) => d.data.citedBy);
+
+  let nStars = 0;
+  let impactFactor = 0;
+
+  $: nStars = starCount(selectedData);
+  $: impactFactor = computeImpactFactor(selectedData);
 </script>
 
 <g class="center">
-  <text>{Math.round($impactFactor)}</text>
+  <g
+    class="g-impact"
+    style="transform: translate(0, {-gOffset}px)"
+  >
+    <text dy={-textOffset}>Impact Factor</text>
+    <NumberPair
+      staticNumber={Math.round(impactFactor)}
+      data={brightData}
+      func={computeImpactFactor}
+    />
+  </g>
+
+  <g
+    class="g-count"
+    style="transform: translate(0, {gOffset}px)"
+  >
+    <text dy={-textOffset}>based on </text>
+    <NumberPair
+      staticNumber={Math.round(nStars)}
+      data={brightData}
+      func={starCount}
+    />
+    <text dy={textOffset}>articles</text>
+  </g>
 </g>
 
 <style>
   text {
+    font-size: 0.8rem;
     dominant-baseline: middle;
     text-anchor: middle;
-    fill: white;
     pointer-events: none;
+    fill: currentColor;
   }
 </style>

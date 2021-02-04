@@ -38,7 +38,8 @@
 </script>
 
 <circle
-  class="star {bright ? 'bright' : ''}"
+  class="star"
+  class:bright
   cx={x}
   cy={y}
   r={$tweenedR}
