@@ -9,14 +9,17 @@
     selectedAxisLine as selectedLineColor
   } from '../inputs/colors';
 
+  import { activeQuantile } from '../stores/selections';
   import {
     duration,
     shortDuration,
     longDuration
   } from '../stores/configurations';
 
+  export let q = 0;
   export let radius = 0;
-  export let selected = false;
+
+  let selected = false;
 
   const tweenedRadius = tweened(radius, {
     delay: $duration,
@@ -31,6 +34,7 @@
     duration: $shortDuration,
   })
 
+  $: selected = q === $activeQuantile;
   $: tweenedRadius.set(radius);
   $: color.set(selected ? selectedLineColor : lineColor);
   $: opacity.set(selected ? 1 : 0.2);

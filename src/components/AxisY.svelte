@@ -7,7 +7,7 @@
   import Label from './Label.svelte';
 
   import { skyScale } from '../stores/scales';
-  import { maxCitations } from '../stores/selections';
+  // import { maxCitations } from '../stores/selections';
   import { quantiles as rawQuantiles, tickStep } from '../inputs/constants';
 
   export let selectedData = [];
@@ -24,7 +24,6 @@
         q,
         value,
         radius: $skyScale(value),
-        selected: value === $maxCitations,
       };
     });
 
@@ -40,8 +39,8 @@
   <g class="quantile-lines">
     {#each quantiles as quantile}
       <QuantileLine
-        radius={quantile.radius}
-        selected={quantile.selected} />
+        q={quantile.q}
+        radius={quantile.radius} />
     {/each}
   </g>
   <g class="axis-lines">
