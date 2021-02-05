@@ -19,6 +19,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   color: #ffffff;
   overflow: hidden;
+  line-height: 1.2;
 }
 
 html, body {
