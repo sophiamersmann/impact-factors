@@ -28,7 +28,7 @@
   <Svg>
     <Defs />
     <g class="axis">
-      <AxisY {selectedData} />
+      <AxisY {selectedData} nBrightStars={brightData.length} />
       <AxisX {selectedData} />
     </g>
     <Stars {data} />

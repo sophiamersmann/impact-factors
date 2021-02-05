@@ -27,9 +27,10 @@
         pathId={`path-axis-x-label-${i}`}
         radius={$innerRadius}
         {angle}
-        text={text.slice(2)}
         hanging
-      />
+      >
+        {text.slice(2)}
+      </Label>
     {/each}
   </g>
 </g>

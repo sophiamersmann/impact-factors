@@ -3,14 +3,15 @@
   
   import AxisInteraction from './AxisInteraction.svelte';
   import QuantileLine from './QuantileLine.svelte';
+  import QuantileLabel from './QuantileLabel.svelte';
   import AxisYLine from './AxisYLine.svelte';
   import Label from './Label.svelte';
 
   import { skyScale } from '../stores/scales';
-  // import { maxCitations } from '../stores/selections';
   import { quantiles as rawQuantiles, tickStep } from '../inputs/constants';
 
   export let selectedData = [];
+  export let nBrightStars = [];
 
   let quantiles = [];
   let lines = [];
@@ -43,6 +44,17 @@
         radius={quantile.radius} />
     {/each}
   </g>
+  <g class="quantile-labels">
+    {#each quantiles.slice(1) as quantile, i}
+      <QuantileLabel
+        id={i}
+        q={quantile.q}
+        value={Math.round(quantile.value)}
+        radius={quantile.radius}
+        nStars={selectedData.length}
+        {nBrightStars} />
+    {/each}
+  </g>
   <g class="axis-lines">
     {#each lines as line}
       <AxisYLine radius={line.radius} />
@@ -54,8 +66,9 @@
         pathId={`path-axis-y-label-${line.value}`}
         radius={line.radius}
         angle="0"
-        text={line.value}
-      />
+      >
+        {line.value}
+      </Label>
     {/each}
   </g>
 </g>
