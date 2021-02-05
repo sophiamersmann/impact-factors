@@ -1,6 +1,8 @@
 <script>
   import { format as d3Format } from 'd3-format';
 
+  import Arrow from './Arrow.svelte';
+
   import { tweened } from "svelte/motion";
   import { fly } from "svelte/transition";
 
@@ -16,9 +18,13 @@
   let difference = 0;
   let format;
 
+  let reactiveNumberElem;
+  let reactiveNumberElemWidth = 0;
+
   const xOffset = 27;
-  const arrowOffset = 15;
+  const innerOffset = 15;
   const xFly = 10;
+  const arrowLength = 14;
 
   const x = tweened(0, {
     duration: $longDuration,
@@ -37,6 +43,8 @@
   $: percentageChange = 1 - ($reactiveNumber / staticNumber);
 
   $: format = d3Format($activeQuantile === 0.999 ?'.1%' : '.0%');
+
+  $: reactiveNumberElemWidth = reactiveNumberElem ? reactiveNumberElem.getBBox().width : 0;
 </script>
 
 <g class="number-pair">
@@ -52,27 +60,33 @@
       in:fly={{ duration: $longDuration, delay: $longDuration - 100, x: xFly }}
       out:fly={{ duration: $longDuration, x: xFly }}
     >  
+      <line
+        x1={-xOffset + innerOffset}
+        y1="0"
+        x2={xOffset - innerOffset}
+        y2="0"
+      />
       <text class="difference" dy="-5">
         {Math.round(difference)}
       </text>
-      <line
-        x1={-xOffset + arrowOffset}
-        y1="0"
-        x2={xOffset - arrowOffset}
-        y2="0"
-      />
       <text
         class="reactive-number"
         x={xOffset}
+        bind:this={reactiveNumberElem}
       >
         {Math.round($reactiveNumber)}
-        <tspan
-          class="change {percentageChange ? '' : 'zero'}"
-          dx="3"
-        >
-          (-{format(percentageChange)})
-        </tspan>
-      </text>
+      </text> 
+      <g transform="translate({xOffset + reactiveNumberElemWidth + 10}, 0)">
+        {#if percentageChange > 0}
+          <Arrow
+            orient="down"
+            length={arrowLength} y={-arrowLength/2}
+            color="orangered" />
+        {/if}
+        <text class="change {percentageChange ? '' : 'zero'}" dx="5">
+          {format(percentageChange)}
+        </text>
+      </g>     
     </g>
   {/if}
 </g>
@@ -107,12 +121,11 @@
     font-size: 0.6rem;
   }
 
-  .change {
-    fill: currentColor;
-    font-weight: normal;
+  .change{
+    fill: orangered;
   }
 
-  .change:not(.zero) {
-    fill: orangered;
+  .change.zero {
+    fill: currentColor;
   }
 </style>
