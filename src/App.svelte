@@ -2,6 +2,7 @@
   import Catch from './Catch.svelte';
   import SidePanel from './SidePanel.svelte';
   import Visualization from './Visualization.svelte';
+  import Tooltip from './Tooltip.svelte';
 
   import { size } from './stores/dimensions';
 
@@ -25,6 +26,7 @@
     {#await loadData() then data}
       <Visualization {data} />
     {/await}
+    <Tooltip />
   {/if}
 </div>
 

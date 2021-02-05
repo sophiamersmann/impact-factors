@@ -22,7 +22,7 @@
 </script>
 
 <div
-  class="visualisation-wrapper"
+  class="chart-wrapper"
   style="width: {$size}px; height: {$size}px"
 >
   <Svg>
@@ -37,7 +37,7 @@
 </div>
 
 <style>
-  .visualisation-wrapper {
+  .chart-wrapper {
     width: 100%;
     height: 100%;
     margin: 0 auto;

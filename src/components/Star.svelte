@@ -4,7 +4,7 @@
   import { tweened } from 'svelte/motion';
   import { quadIn, quadOut } from 'svelte/easing';
 
-  import { maxCitations } from '../stores/selections';
+  import { maxCitations, selectedStar } from '../stores/selections';
   import { duration, longDuration } from '../stores/configurations';
 
   import {
@@ -35,6 +35,10 @@
 
   $: tweenedR.set(r);
   $: color.set(bright ? starColor : darkStarColor);
+
+  function selectStar() {
+    if (bright) selectedStar.set(data);
+  }
 </script>
 
 <circle
@@ -44,6 +48,8 @@
   cy={y}
   r={$tweenedR}
   fill={$color}
+  on:mouseenter={selectStar}
+  on:mouseleave={() => selectedStar.set(undefined)}
 />
 
 <style>
