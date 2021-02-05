@@ -1,4 +1,6 @@
 :root {
+  --spacing: 2rem;
+
   --background-color: #061616;
   --background-color-center: #103d56;
 }
