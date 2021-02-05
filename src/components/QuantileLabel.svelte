@@ -29,14 +29,12 @@
         y={-radius}
         length={arrowLength}
         orient="up"
-        color="orangered"
         animate
       />
       <Label
         pathId="path-quantile-label-upper-{id}"
         {radius}
         angle="0"
-        color="orangered"
       >
         <tspan>{nExcludedStars} of {nStars}</tspan>
         articles excluded
