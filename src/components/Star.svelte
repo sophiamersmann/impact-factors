@@ -41,6 +41,8 @@
   }
 </script>
 
+<svelte:body on:click={() => selectedStar.set(undefined)}></svelte:body>
+
 <circle
   class="star"
   class:bright
@@ -49,7 +51,6 @@
   r={$tweenedR}
   fill={$color}
   on:mouseenter={selectStar}
-  on:mouseleave={() => selectedStar.set(undefined)}
 />
 
 <style>
