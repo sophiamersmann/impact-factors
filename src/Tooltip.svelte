@@ -7,7 +7,7 @@
 
   let authors = '';
 
-  const width = 250;
+  const size = 250;
 
   $: authors = $selectedStar?.authors.split(",").slice(0, 5) + ' et al';
 </script>
@@ -15,22 +15,19 @@
 {#if $selectedStar}
   <div
     class="tooltip"
-    style="width: {width}px"
-    in:fly={{ x: width, duration: $duration, easing: quadOut }}
-    out:fly={{ x: width, duration: $duration, easing: quadIn }}
+    style="width: {size}px; height: {size}px"
+    in:fly={{ x: size, duration: $duration, easing: quadOut }}
+    out:fly={{ x: size, duration: $duration, easing: quadIn }}
   >
     <div class="content">
-      <div><b>{$selectedStar.title}</b></div>
-      <div>
-        {authors}.
-        <span class="journal">{$selectedStar.journal}</span> {$selectedStar.volume},
-        {$selectedStar.page.start}-{$selectedStar.page.end}
-        ({$selectedStar.year})
+      <span aria-hidden='true'></span>
+      <b>{$selectedStar.title}</b> {authors}.
+      <span class="journal">{$selectedStar.journal}</span> {$selectedStar.volume},
+      {$selectedStar.page.start}-{$selectedStar.page.end}
+      ({$selectedStar.year})
+      <div class="cited-by">Cited <b>{$selectedStar.citedBy}</b> times</div>
       </div>
-      <div class="doi">DOI: {$selectedStar.doi}</div>
     </div>
-    <div class="tag cited-by">Cited <b>{$selectedStar.citedBy}</b> times</div>
-  </div>
 {/if}
 
 <style>
@@ -38,11 +35,18 @@
     position: absolute;
     right: var(--spacing);
     top: var(--spacing);
-    padding: calc(var(--spacing) / 2);
-    background-color: white;
-    color: var(--background-color);
+
+    display: grid;
+    place-items: center;
+    
+    padding: 20px;
+    color: white;
+    background-color: var(--background-color);
     font-size: 0.9rem;
-    border-radius: 5px;
+    border-radius: 50%;
+    text-align: center;
+    border: 2px solid white;
+    box-shadow: 0 16px 48px rgba(255, 255, 255, 0.08);
   }
 
   .journal {
@@ -52,16 +56,29 @@
 
   .cited-by {
     display: block;
-    text-align: center;
-    padding: 4px;
-    background-color: gold;
     border-radius: 5px;
-    margin-top: 10px;
     font-size: 0.8rem;
-    text-transform: uppercase;
+    background-color: white;
+    width: max-content;
+    color: var(--background-color);
+    padding: 2px 4px;
+    margin: 6px auto;
   }
 
-  .doi {
-    color: gray;
+  [aria-hidden='true']:after,
+  [aria-hidden='true']:before {
+    float: left;
+    width: 50%; height: 100%;
+    --bite: radial-gradient(farthest-side
+                            at var(--pos-x, 100%), 
+                            transparent 100%, red);
+    -webkit-shape-outside: var(--bite);
+            shape-outside: var(--bite);
+    content: ''
   }
+
+  [aria-hidden='true']:after {
+		float: right;
+		--pos-x: 0
+	}
 </style>
