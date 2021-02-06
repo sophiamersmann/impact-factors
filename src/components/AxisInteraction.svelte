@@ -23,8 +23,7 @@
   }
 
   function lightUpSky(event) {
-    const relatedTarget = event.relatedTarget;
-    if (relatedTarget && !relatedTarget.classList.contains('svg')) return;
+    if (!event.relatedTarget?.classList.contains('svg')) return;
 
     activeQuantile.set(1);
     maxCitations.set(Infinity);
