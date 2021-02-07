@@ -1,9 +1,21 @@
 <script>
+  import Legend from './components/Legend.svelte';
+
   import { selectedJournal } from './stores/selections';
 </script>
 
 <div class="side-panel">
-  Side Panel
+  <h1>Title</h1>
+
+  <p>
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+    sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+    justo duo dolores et ea rebum. Stet clita kasd gubergren,
+    no sea takimata sanctus est Lorem ipsum dolor sit amet.
+  </p>
+
+  <Legend />
 
   <select bind:value={$selectedJournal}>
     <option value="nature">Nature</option>
@@ -14,5 +26,8 @@
 <style>
   .side-panel {
     position: absolute;
+    top: var(--spacing);
+    left: var(--spacing);
+    width: 250px;
   }
 </style>

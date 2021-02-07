@@ -15,11 +15,11 @@
   export let x = 0;
   export let y = 0;
   export let r = 0;
-  export let data;
+  export let data = null;
 
   let bright = true;
 
-  $: bright = data.citedBy < $maxCitations;
+  $: if (data) bright = data.citedBy < $maxCitations;
 
   const tweenedR = tweened(0, {
     delay: 2 * Math.random() * $longDuration,
@@ -37,7 +37,7 @@
   $: color.set(bright ? starColor : darkStarColor);
 
   function selectStar() {
-    if (bright) selectedStar.set(data);
+    if (data && bright) selectedStar.set(data);
   }
 </script>
 
