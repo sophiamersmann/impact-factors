@@ -22,8 +22,8 @@
   {#if width < 600}
     <Catch content={"width < 600"} />
   {:else}
-    <SidePanel />
     {#await loadData() then data}
+      <SidePanel {data} />
       <Visualization {data} />
     {/await}
     <Tooltip />

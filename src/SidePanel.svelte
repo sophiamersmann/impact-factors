@@ -1,6 +1,8 @@
 <script>
   import Legend from './components/Legend.svelte';
   import SelectJournal from './components/SelectJournal.svelte';
+
+  export let data = [];
 </script>
 
 <div class="side-panel">
@@ -15,7 +17,7 @@
   </p>
 
   <Legend />
-  <SelectJournal />
+  <SelectJournal {data} />
 </div>
 
 <style>

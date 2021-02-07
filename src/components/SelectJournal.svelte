@@ -1,9 +1,28 @@
 <script>
-  import Select from 'svelte-select';
-  import SelectItem from './components/SelectItem.svelte';
+  import { descending, mean, groups } from 'd3-array';
 
-  import { journals } from './inputs/constants';
-  import { selectedJournal } from './stores/selections';
+  import Select from 'svelte-select';
+  import SelectItem from './SelectItem.svelte';
+
+  import { selectedJournal } from '../stores/selections';
+
+  export let data = [];
+
+  const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+  const journals = groups(data, (d) => d.journal)
+    .map(([, values]) => {
+      const journal = values[0].journal;
+      const impactFactor = mean(values, (d) => d.citedBy);
+      return {
+        value: journal,
+        label: `${capitalize(journal)} (${Math.round(impactFactor)})`,
+        impactFactor
+      };
+    })
+    .sort((a, b) => descending(a.impactFactor, b.impactFactor));
+
+  selectedJournal.set(journals[0].value);
 
   function handleSelect(event) {
     selectedJournal.set(event.detail.value);
