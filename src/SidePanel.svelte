@@ -1,7 +1,6 @@
 <script>
   import Legend from './components/Legend.svelte';
-
-  import { selectedJournal } from './stores/selections';
+  import SelectJournal from './components/SelectJournal.svelte';
 </script>
 
 <div class="side-panel">
@@ -16,11 +15,7 @@
   </p>
 
   <Legend />
-
-  <select bind:value={$selectedJournal}>
-    <option value="nature">Nature</option>
-    <option value="science">Science</option>
-  </select>
+  <SelectJournal />
 </div>
 
 <style>
