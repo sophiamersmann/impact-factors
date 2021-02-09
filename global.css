@@ -3,6 +3,14 @@
 
   --background-color: #061616;
   --background-color-center: #103d56;
+  --gray: #ddd;
+  --white: #ffffff;
+
+  --primary: #ffc917;
+  --danger: #ff692e;
+
+  --star: var(--white);
+  --dark-star: #0c2c3d;
 }
 
 *,
@@ -17,7 +25,7 @@ html {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #ffffff;
+  color: var(--white);
   overflow: hidden;
   line-height: 1.35;
 }
