@@ -2,23 +2,27 @@
   import Legend from './components/Legend.svelte';
   import SelectJournal from './components/SelectJournal.svelte';
 
+  import { panelWidth } from './stores/dimensions';
+
   export let data = [];
 </script>
 
-<div class="side-panel">
+<div
+  class="side-panel"
+  bind:clientWidth={$panelWidth}
+>
   <class class="top">
     <h1 class="bright">Switching a star article's light off</h1>
 
     <p>
       The importance of an academic journal is sometimes described
-      by the <b>average number of citations</b>
-      that
-      articles published in previous years received, the so-called
-      <i>impact factor</i>.* 
+      by the <b>average number of citations</b> that
+      articles published in previous years received, referred to as
+      the <i>impact factor</i>.* 
       Often, only few articles receive a lot of attention, while the
-      vast majority contribute little.
+      vast majority of articles contribute little.
       This visualisation allows to explore what a journal's impact factor
-      <i>could have been</i> if certain articles
+      <i>would have been</i> if certain high-impact articles
       weren't published.
     <p>
 
@@ -27,8 +31,10 @@
     </div>
 
     <div class="small">
-      A star represents an article and encodes the number
-      of received citations as:
+      <p>
+        A star represents an article and encodes the number
+        of received citations as:
+      </p>
       <Legend />
     </div>
 
@@ -52,13 +58,11 @@
 
 <style>
   .side-panel {
-    position: absolute;
-    top: var(--spacing);
-    left: var(--spacing);
-    width: 250px;
-    height: calc(100% - var(--spacing));
+    padding: var(--spacing) 0 calc(var(--spacing) / 2) var(--spacing);
     font-size: 0.9rem;
     opacity: 0.9;
+    height: 100%;
+    overflow-y: auto;
 
     display: flex;
     flex-direction: column;
@@ -75,9 +79,9 @@
   }
 
   a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--white);
   }
 
   .select {

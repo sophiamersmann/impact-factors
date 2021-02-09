@@ -4,7 +4,7 @@
   import Visualization from './Visualization.svelte';
   import Tooltip from './Tooltip.svelte';
 
-  import { size } from './stores/dimensions';
+  import { panelWidth, size } from './stores/dimensions';
 
   import loadData from './utils/loadData';
 
@@ -18,13 +18,19 @@
   class="app-wrapper"
   bind:clientWidth={width}
   bind:clientHeight={height}
+  style="background: radial-gradient(
+    circle at {50 + $panelWidth / width * 100 / 2}%,
+    var(--background-color-center) 0%,
+    var(--background-color) 80%)"
 >
   {#if width < 600}
     <Catch content={"width < 600"} />
   {:else}
     {#await loadData() then data}
-      <SidePanel {data} />
-      <Visualization {data} />
+      <main>
+        <SidePanel {data} />
+        <Visualization {data} />
+      </main>
     {/await}
     <Tooltip />
   {/if}
@@ -34,9 +40,11 @@
   .app-wrapper {
     width: 100%;
     height: 100%;
-    background: radial-gradient(
-      circle at center,
-      var(--background-color-center) 0%,
-      var(--background-color) 80%);
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: minmax(250px, 20%) 1fr;
+    height: 100%;
   }
 </style>

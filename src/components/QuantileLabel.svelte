@@ -28,7 +28,7 @@
         y={-radius}
         length={arrowLength}
         orient="up"
-        color="#ddd"
+        color="var(--gray)"
         animate
       />
       <Label

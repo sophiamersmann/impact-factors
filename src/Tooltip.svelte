@@ -41,10 +41,11 @@
     top: var(--spacing);
 
     padding: calc(var(--spacing) / 2);
-    color: white;
+    color: var(--white);
     background-color: var(--background-color);
     font-size: 0.9rem;
-    border: 2px solid white;
+    opacity: 0.9;
+    border: 2px solid var(--white);
     border-radius: 10px;
     box-shadow: 0 16px 48px rgba(255, 255, 255, 0.08);
   }
@@ -58,7 +59,7 @@
     display: block;
     border-radius: 5px;
     font-size: 0.8rem;
-    background-color: white;
+    background-color: var(--white);
     color: var(--background-color);
     padding: 2px 4px;
     text-align: center;

@@ -3,6 +3,7 @@ import { readable, writable, derived } from 'svelte/store';
 export const starRadius = readable({ min: 0.5, max: 6 });
 
 export const size = writable();
+export const panelWidth = writable();
 
 export const margin = derived(starRadius, $starRadius => $starRadius.max);
 

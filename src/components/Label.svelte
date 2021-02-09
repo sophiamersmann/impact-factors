@@ -5,7 +5,7 @@
   export let radius = 0;
   export let angle = 0;
   export let hanging = false;
-  export let color = '#ddd';
+  export let color = 'var(--gray)';
   export let opacity = 0.8;
 
   const offset = 3;

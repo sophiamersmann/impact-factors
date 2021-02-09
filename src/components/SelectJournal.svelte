@@ -41,16 +41,16 @@
 
 <style>
   .select {
-    color: white;
-    --borderFocusColor: white;
+    color: var(--white);
+    --borderFocusColor: var(--white);
     --background: var(--background-color);
     --listBackground: var(--background-color);
-    --itemColor: white;
-    --itemIsActiveColor: white;    
-    --inputColor: white;    
+    --itemColor: var(--white);
+    --itemIsActiveColor: var(--white);    
+    --inputColor: var(--white);    
     --itemActiveBackground: var(--background-color);    
     --itemIsActiveBG: var(--background-color);
-    --itemHoverBG: white;
+    --itemHoverBG: var(--white);
     --itemHoverColor: var(--background-color);
     --borderRadius: 5px;
     --listBorderRadius: 5px;

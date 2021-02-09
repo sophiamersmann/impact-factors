@@ -82,7 +82,7 @@
           <Arrow
             orient="down"
             length={arrowLength} y={-arrowLength/2}
-            color="orangered" />
+            color="var(--danger)" />
         {/if}
         <text class="change {percentageChange ? '' : 'zero'}" dx="5">
           {format(100 * percentageChange)}%
@@ -114,7 +114,7 @@
 
   .reactive-number {
     text-anchor: start;
-    fill: gold;
+    fill: var(--primary);
   }
 
   .difference {
@@ -123,7 +123,7 @@
   }
 
   .change{
-    fill: orangered;
+    fill: var(--danger);
   }
 
   .change.zero {

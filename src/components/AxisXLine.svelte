@@ -25,7 +25,7 @@
 
 <style>
   line {
-    stroke: #ddd;
+    stroke: var(--gray);
     stroke-opacity: 0.15;
     stroke-dasharray: 3;
     pointer-events: none;
