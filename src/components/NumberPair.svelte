@@ -1,12 +1,10 @@
 <script>
-  import { format as d3Format } from 'd3-format';
-
   import Arrow from './Arrow.svelte';
 
   import { tweened } from "svelte/motion";
   import { fly } from "svelte/transition";
 
-  import { activeQuantile, maxCitations } from '../stores/selections';
+  import { maxCitations } from '../stores/selections';
   import { duration, longDuration } from '../stores/configurations';
   import { quadOut } from "svelte/easing";
 
@@ -35,6 +33,9 @@
     easing: quadOut,
   });
 
+  const round = (x) => Math.round(x);
+  const roundToOneDecimal = (x) => Math.round(x * 10) / 10;
+
   $: updated = $maxCitations < Infinity;
   $: x.set(updated ? xOffset : 0);
   $: reactiveNumber.set(Math.round(func(data)));
@@ -42,7 +43,7 @@
   $: difference = $reactiveNumber - staticNumber;
   $: percentageChange = 1 - ($reactiveNumber / staticNumber);
 
-  $: format = d3Format($activeQuantile === 0.999 ?'.1%' : '.0%');
+  $: format = 100 * percentageChange < 10 ? roundToOneDecimal : round;
 
   $: reactiveNumberElemWidth = reactiveNumberElem ? reactiveNumberElem.getBBox().width : 0;
 </script>
@@ -84,7 +85,7 @@
             color="orangered" />
         {/if}
         <text class="change {percentageChange ? '' : 'zero'}" dx="5">
-          {format(percentageChange)}
+          {format(100 * percentageChange)}%
         </text>
       </g>     
     </g>
