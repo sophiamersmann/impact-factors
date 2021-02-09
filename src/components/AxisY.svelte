@@ -1,32 +1,17 @@
 <script>
-  import { quantile, range } from 'd3-array';
+  import { range } from 'd3-array';
   
   import AxisInteraction from './AxisInteraction.svelte';
   import QuantileLine from './QuantileLine.svelte';
-  import QuantileLabel from './QuantileLabel.svelte';
   import AxisYLine from './AxisYLine.svelte';
   import Label from './Label.svelte';
 
   import { skyScale } from '../stores/scales';
-  import { quantiles as rawQuantiles, tickStep } from '../inputs/constants';
+  import { tickStep } from '../inputs/constants';
 
-  export let selectedData = [];
-  export let nBrightStars = [];
+  export let quantiles = [];
 
-  let quantiles = [];
   let lines = [];
-
-  $: quantiles = rawQuantiles
-    .map((q)=> {
-      const value = quantile(
-        selectedData.map(d => d.data.citedBy), q);
-
-      return {
-        q,
-        value,
-        radius: $skyScale(value),
-      };
-    });
 
   $: lines = range(0, $skyScale.domain()[1], tickStep)
     .map((value) => ({
@@ -42,17 +27,6 @@
       <QuantileLine
         q={quantile.q}
         radius={quantile.radius} />
-    {/each}
-  </g>
-  <g class="quantile-labels">
-    {#each quantiles.slice(1) as quantile, i}
-      <QuantileLabel
-        id={i}
-        q={quantile.q}
-        value={Math.round(quantile.value)}
-        radius={quantile.radius}
-        nStars={selectedData.length}
-        {nBrightStars} />
     {/each}
   </g>
   <g class="axis-lines">
