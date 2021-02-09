@@ -2,7 +2,7 @@
   import { selectedStar } from './stores/selections';
   import { duration } from './stores/configurations';
 
-  import { fly } from 'svelte/transition';
+  import { fade } from 'svelte/transition';
   import { quadOut, quadIn } from 'svelte/easing';
 
   let authors = '';
@@ -16,8 +16,8 @@
   <div
     class="tooltip"
     style="width: {size}px"
-    in:fly={{ x: size, duration: $duration, easing: quadOut }}
-    out:fly={{ x: size, duration: $duration, easing: quadIn }}
+    in:fade={{ duration: $duration, easing: quadOut }}
+    out:fade={{ duration: $duration, easing: quadIn }}
   >
     <div class="content">
       <b>{$selectedStar.title}</b>
