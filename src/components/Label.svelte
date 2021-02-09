@@ -6,6 +6,7 @@
   export let angle = 0;
   export let hanging = false;
   export let color = '#ddd';
+  export let opacity = 0.8;
 
   const offset = 3;
 
@@ -24,6 +25,7 @@
     id={pathId}
     d={arcLine(radius, angle, angle + Math.PI)} />
   <text
+    fill-opacity={opacity}
     style="dominant-baseline: {hanging ? 'hanging' : 'auto'}; fill: {color}"
   >
     <textPath
@@ -42,7 +44,6 @@
   }
 
   text {
-    fill-opacity: 0.8;
     font-size: 10px;
     pointer-events: none;
   }

@@ -8,7 +8,6 @@
 
   export let id = 0;
   export let q = 0;
-  export let value = 0;
   export let radius = 0;
   export let nStars = 0;
   export let nBrightStars = 0;
@@ -29,37 +28,18 @@
         y={-radius}
         length={arrowLength}
         orient="up"
+        color="#ddd"
         animate
       />
       <Label
         pathId="path-quantile-label-upper-{id}"
         {radius}
         angle="0"
+        opacity="1"
       >
         <tspan>{nExcludedStars} of {nStars}</tspan>
         articles excluded
         <tspan>({format(1-q)})</tspan>
-      </Label>
-    </g>
-    <g>
-      <Arrow
-        x="0"
-        y={-radius}
-        length={arrowLength}
-        orient="down"
-        color="gold"
-        animate
-      />
-      <Label
-        pathId="path-quantile-label-lower-{id}"
-        {radius}
-        angle="0"
-        hanging
-        color="gold"
-      >
-        Includes articles cited
-        <tspan>&lt; {value}</tspan>
-        times
       </Label>
     </g>
   </g>

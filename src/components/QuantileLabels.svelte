@@ -11,7 +11,6 @@
     <QuantileLabel
       id={i}
       q={quantile.q}
-      value={Math.round(quantile.value)}
       radius={quantile.radius}
       {nStars}
       {nBrightStars} />
