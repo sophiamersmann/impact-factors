@@ -5,10 +5,9 @@
   import SelectItem from './SelectItem.svelte';
 
   import { selectedJournal } from '../stores/selections';
+  import { denormalize } from '../utils/misc';
 
   export let data = [];
-
-  const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
   const journals = groups(data, (d) => d.journal)
     .map(([, values]) => {
@@ -16,7 +15,7 @@
       const impactFactor = mean(values, (d) => d.citedBy);
       return {
         value: journal,
-        label: `${capitalize(journal)} (${Math.round(impactFactor)})`,
+        label: `${denormalize(journal)} (${Math.round(impactFactor)})`,
         impactFactor
       };
     })

@@ -2,12 +2,13 @@ import { csv } from 'd3-fetch';
 import { ascending } from 'd3-array';
 
 import { dataPath } from '../inputs/constants';
+import { normalize } from './misc';
 
 const loadData = async () => {
   const data = await csv(dataPath, (d) => ({
     authors: d.Authors,
     title: d.Title,
-    journal: d['Source title'].toLowerCase(),
+    journal: normalize(d['Source title']),
     year: +d.Year,
     volume: +d.Volume,
     issue: +d.Issue,
