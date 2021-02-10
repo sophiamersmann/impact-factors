@@ -15,15 +15,14 @@
     <h1 class="bright">Switching a star article's light off</h1>
 
     <p>
-      The importance of an academic journal is sometimes described
-      by the <b>average number of citations</b> that
-      articles published in previous years received, referred to as
-      the <i>impact factor</i>.* 
-      Often, only few articles receive a lot of attention, while the
-      vast majority of articles contribute little.
-      This visualisation allows to explore what a journal's impact factor
-      <i>would have been</i> if certain high-impact articles
-      weren't published.
+      The relevance of an academic journal is sometimes described
+      by the <b>average number of citations</b> of articles published
+      in previous years. This is referred to as the <i>impact factor</i>.* 
+      Commonly, though, only a small number of articles receive much
+      attention, while the vast majority of articles contribute little to
+      the impact factor. This visualisation allows exploration of what a
+      journal's impact factor <i>would have been</i> if certain high-impact
+      articles hadn't been published.
     <p>
 
     <div class="select">
@@ -32,8 +31,8 @@
 
     <div class="small">
       <p>
-        A star represents an article and encodes the number
-        of received citations as:
+        Each star represents an article and encodes the number
+        of received citations:
       </p>
       <Legend />
     </div>
