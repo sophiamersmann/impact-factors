@@ -69,11 +69,6 @@
     justify-content: space-between;
   }
 
-  h1 {
-    font-size: 1.3rem;
-    margin-bottom: calc(var(--spacing) / 2);
-  }
-
   p {
     margin: calc(var(--spacing) / 2) 0;
   }

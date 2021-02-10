@@ -5,26 +5,32 @@
   import Tooltip from './Tooltip.svelte';
 
   import { panelWidth, size } from './stores/dimensions';
+  import { minWidth } from './inputs/constants';
 
   import loadData from './utils/loadData';
 
   export let width;
   export let height;
 
+  let backgroundCenter = 'center';
+  let background = 'var(--background-color-static)';
+
   $: size.set(Math.min(width, height) || 0);
+
+  $: backgroundCenter = $panelWidth ? `${50 + $panelWidth / width * 100 / 2}%` : 'center';
+  $: background = width < minWidth
+    ? 'var(--background-color-static)'
+    : `radial-gradient(circle at ${backgroundCenter}, var(--background-color-center) 0%, var(--background-color) 80%)`;
 </script>
 
 <div
   class="app-wrapper"
   bind:clientWidth={width}
   bind:clientHeight={height}
-  style="background: radial-gradient(
-    circle at {50 + $panelWidth / width * 100 / 2}%,
-    var(--background-color-center) 0%,
-    var(--background-color) 80%)"
+  style="background: {background}"
 >
-  {#if width < 600}
-    <Catch content={"width < 600"} />
+  {#if width < minWidth}
+    <Catch />
   {:else}
     {#await loadData() then data}
       <main>
