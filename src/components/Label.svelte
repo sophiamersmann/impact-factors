@@ -26,7 +26,8 @@
     d={arcLine(radius, angle, angle + Math.PI)} />
   <text
     fill-opacity={opacity}
-    style="dominant-baseline: {hanging ? 'hanging' : 'auto'}; fill: {color}"
+    style="fill: {color}"
+    dy={hanging ? 8 : 0}
   >
     <textPath
       xlink:href={`#${pathId}`}
