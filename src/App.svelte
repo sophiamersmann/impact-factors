@@ -1,4 +1,6 @@
 <script>
+  import '../node_modules/normalize.css/normalize.css';
+
   import Catch from './Catch.svelte';
   import SidePanel from './SidePanel.svelte';
   import Visualization from './Visualization.svelte';

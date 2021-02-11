@@ -58,13 +58,18 @@
 
 <style>
   .side-panel {
-    padding: var(--spacing) 0 calc(var(--spacing) / 2) var(--spacing);
+    padding: var(--spacing) calc(var(--spacing) / 2) calc(var(--spacing) / 2) var(--spacing);
     height: 100%;
     overflow-y: auto;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: calc(var(--spacing) / 2);
   }
 
   p {

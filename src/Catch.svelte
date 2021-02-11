@@ -19,6 +19,11 @@
   background-position: center;
 }
 
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: calc(var(--spacing) / 2);
+}
+
 .content {
   width: clamp(100px, 100%, 350px);
 }
