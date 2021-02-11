@@ -3,6 +3,7 @@
 
   import Select from 'svelte-select';
   import SelectItem from './SelectItem.svelte';
+  import Selection from './Selection.svelte';
 
   import { selectedJournal } from '../stores/selections';
   import { denormalize } from '../utils/misc';
@@ -32,6 +33,7 @@
   <Select
     items={journals}
     Item={SelectItem}
+    {Selection}
     selectedValue={journals[0]}
     isClearable={false}
     showIndicator
@@ -46,7 +48,7 @@
     --listBackground: var(--background-color);
     --itemColor: var(--white);
     --itemIsActiveColor: var(--white);    
-    --inputColor: var(--white);    
+    --inputColor: #fff;    
     --itemActiveBackground: var(--background-color);    
     --itemIsActiveBG: var(--background-color);
     --itemHoverBG: var(--white);
