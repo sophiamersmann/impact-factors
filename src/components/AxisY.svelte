@@ -39,7 +39,7 @@
       <Label
         pathId={`path-axis-y-label-${line.value}`}
         radius={line.radius}
-        angle="0"
+        angle={-Math.PI/2}
       >
         {line.value}
       </Label>
