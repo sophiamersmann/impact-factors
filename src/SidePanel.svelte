@@ -12,15 +12,20 @@
   bind:clientWidth={$panelWidth}
 >
   <class class="top">
-    <h1 class="bright">Switching a star article's light off</h1>
+    <div class="header bright">
+      <h1>Switching the light off</h1>
+      <div class="sub-title">
+        <i>Academic journals' impact factors without their star articles</i>
+      </div>
+    </div>
 
     <p>
       The relevance of an academic journal is sometimes described
       by the <span class="bright"><b>average number of citations</b></span>
       of articles published in previous years. This is referred to as the
-      <span class="bright"><i>impact factor</i></span>.* 
+      <span class="bright"><i>impact factor</i></span>.<sup>1</sup> 
       Commonly, though, only a small number of articles receive much
-      attention, while the vast majority of articles contribute little to
+      attention, while the vast majority contribute little to
       the impact factor. This visualisation allows exploration of what a
       journal's impact factor <span class="bright"><i>would have been</i></span>
       if certain high-impact articles hadn't been published.
@@ -42,7 +47,7 @@
 
   <div class="bottom small">
     <p>
-      *Here, the impact factor reflects the average number
+      <sup>1</sup> Here, the impact factor reflects the average number
       of citations that articles published in 2018/19
       received up until now (Feb 2021).
     </p>
@@ -67,10 +72,17 @@
     justify-content: space-between;
   }
 
+  .header {
+    margin-bottom: var(--spacing);
+  }
+
+  .sub-title {
+    line-height: 1.15;
+  }
+
   h1 {
     font-size: 1.5rem;
-    margin-top: 0;
-    margin-bottom: calc(var(--spacing) / 2);
+    margin: 0;
   }
 
   p {
