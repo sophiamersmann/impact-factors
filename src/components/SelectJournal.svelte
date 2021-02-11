@@ -30,6 +30,7 @@
 </script>
 
 <div class="select">
+  <div class="label">Select a journal:</div>
   <Select
     items={journals}
     Item={SelectItem}
@@ -55,5 +56,10 @@
     --itemHoverColor: var(--background-color);
     --borderRadius: 5px;
     --listBorderRadius: 5px;
+  }
+
+  .label {
+    margin-bottom: calc(var(--spacing) / 4);
+    font-size: 0.9rem;
   }
 </style>
