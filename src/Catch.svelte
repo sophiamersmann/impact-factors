@@ -17,8 +17,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  font-size: 0.9rem;
-  opacity: 0.95;
 }
 
 .content {

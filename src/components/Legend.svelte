@@ -43,6 +43,6 @@
     justify-items: center;
     align-items: center;
     font-size: 0.8rem;
-    opacity: 0.95;
+    font-weight: bold;
   }
 </style>

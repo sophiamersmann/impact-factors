@@ -13,7 +13,7 @@
 
   let lines = [];
 
-  $: lines = range(0, $skyScale.domain()[1], tickStep)
+  $: lines = range(tickStep, $skyScale.domain()[1], tickStep)
     .map((value) => ({
       value,
       radius: $skyScale(value),

@@ -44,7 +44,7 @@
   }
 
   text {
-    font-size: 10px;
+    font-size: 0.7rem;
     pointer-events: none;
   }
 </style>

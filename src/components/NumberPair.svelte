@@ -104,7 +104,7 @@
   text {
     fill: currentColor;
     dominant-baseline: middle;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .static-number,
@@ -119,7 +119,7 @@
 
   .difference {
     text-anchor: middle;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 
   .change{

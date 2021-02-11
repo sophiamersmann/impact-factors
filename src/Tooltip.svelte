@@ -22,7 +22,7 @@
     out:fade={{ duration: $duration, easing: quadIn }}
   >
     <div class="content">
-      <div class="title">
+      <div class="title bright">
         <b>{$selectedStar.title}</b>
       </div>
       <div>
@@ -67,8 +67,7 @@
   .cited-by {
     display: block;
     border-radius: 5px;
-    font-size: 0.8rem;
-    background-color: var(--white);
+    background-color: #fff;
     color: var(--background-color);
     padding: 2px 4px;
     text-align: center;
