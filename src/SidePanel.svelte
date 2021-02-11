@@ -69,6 +69,7 @@
 
   h1 {
     font-size: 1.5rem;
+    margin-top: 0;
     margin-bottom: calc(var(--spacing) / 2);
   }
 
