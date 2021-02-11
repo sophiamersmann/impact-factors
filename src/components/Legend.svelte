@@ -5,7 +5,10 @@
 
   import { radiusScale } from '../stores/scales';
 
-  import { legendTicks } from '../inputs/constants';
+  import {
+    legendTicks,
+    intenseBrightnessThreshold
+  } from '../inputs/constants';
 
   const size = 40;
 
@@ -19,11 +22,11 @@
 </script>
 
 <div class="legend">
-  {#each legendItems as { radius }}
+  {#each legendItems as { citedBy, radius }}
     <div class="marker">
       <Svg {size}>
         <Defs />
-        <Star r={radius} />
+        <Star r={radius} intense={citedBy >= intenseBrightnessThreshold} />
       </Svg>
     </div>
   {/each}

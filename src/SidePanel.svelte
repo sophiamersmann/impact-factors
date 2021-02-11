@@ -59,7 +59,6 @@
   .side-panel {
     padding: var(--spacing) 0 calc(var(--spacing) / 2) var(--spacing);
     font-size: 0.9rem;
-    opacity: 0.9;
     height: 100%;
     overflow-y: auto;
 

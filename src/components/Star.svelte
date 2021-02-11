@@ -7,6 +7,7 @@
   import { maxCitations, selectedStar } from '../stores/selections';
   import { duration, longDuration } from '../stores/configurations';
 
+  import { intenseBrightnessThreshold } from '../inputs/constants';
   import {
     star as starColor,
     darkStar as darkStarColor
@@ -16,10 +17,14 @@
   export let y = 0;
   export let r = 0;
   export let data = null;
+  export let intense = false;
 
   let bright = true;
 
-  $: if (data) bright = data.citedBy < $maxCitations;
+  $: if (data) {
+    bright = data.citedBy < $maxCitations;
+    intense = data.citedBy >= intenseBrightnessThreshold;
+  }
 
   const tweenedR = tweened(0, {
     delay: 2 * Math.random() * $longDuration,
@@ -44,6 +49,7 @@
 <circle
   class="star"
   class:bright
+  class:intense
   cx={x}
   cy={y}
   r={$tweenedR}
@@ -55,5 +61,9 @@
 <style>
   .star.bright {
     filter: url(#glow);
+  }
+
+  .star.bright.intense {
+    filter: url(#intense-glow);
   }
 </style>
