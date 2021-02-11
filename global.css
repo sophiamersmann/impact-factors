@@ -5,12 +5,12 @@
   --background-color-center: #103d56;
   --background-color-static: #0a2a3c;
   --gray: #ddd;
-  --white: #ffffff;
+  --white: #e9f4f6;
 
   --primary: #ffc917;
   --danger: #ff692e;
 
-  --star: var(--white);
+  --star: #c6e2e7;
   --dark-star: #0c2c3d;
 }
 
@@ -40,4 +40,8 @@ html, body {
 h1 {
   font-size: 1.3rem;
   margin-bottom: calc(var(--spacing) / 2);
+}
+
+.bright {
+  color: #fff;
 }
