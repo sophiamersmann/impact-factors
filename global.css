@@ -29,6 +29,7 @@ html {
   color: var(--white);
   overflow: hidden;
   line-height: 1.35;
+  font-size: 15.5px;
 }
 
 html, body {
