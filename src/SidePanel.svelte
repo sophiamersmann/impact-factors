@@ -16,13 +16,14 @@
 
     <p>
       The relevance of an academic journal is sometimes described
-      by the <b>average number of citations</b> of articles published
-      in previous years. This is referred to as the <i>impact factor</i>.* 
+      by the <span class="bright"><b>average number of citations</b></span>
+      of articles published in previous years. This is referred to as the
+      <span class="bright"><i>impact factor</i></span>.* 
       Commonly, though, only a small number of articles receive much
       attention, while the vast majority of articles contribute little to
       the impact factor. This visualisation allows exploration of what a
-      journal's impact factor <i>would have been</i> if certain high-impact
-      articles hadn't been published.
+      journal's impact factor <span class="bright"><i>would have been</i></span>
+      if certain high-impact articles hadn't been published.
     <p>
 
     <div class="select">
