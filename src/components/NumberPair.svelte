@@ -88,7 +88,7 @@
           {format(100 * percentageChange)}%
         </text>
       </g>     
-    </g>
+  </g>
   {/if}
 </g>
 

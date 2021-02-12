@@ -81,6 +81,7 @@
   }
 
   h1 {
+    font-family: 'Rubik', Helvetica, Arial, sans-serif;
     font-size: 1.5rem;
     margin: 0;
   }
