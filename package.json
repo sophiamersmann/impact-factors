@@ -9,6 +9,12 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "d3-array": "^2.11.0",
+    "d3-fetch": "^2.0.0",
+    "d3-format": "^2.0.0",
+    "d3-interpolate": "^2.0.1",
+    "d3-scale": "^3.2.3",
+    "d3-shape": "^2.0.0",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
@@ -18,12 +24,6 @@
     "svelte-select": "^3.16.1"
   },
   "dependencies": {
-    "d3-array": "^2.11.0",
-    "d3-fetch": "^2.0.0",
-    "d3-format": "^2.0.0",
-    "d3-interpolate": "^2.0.1",
-    "d3-scale": "^3.2.3",
-    "d3-shape": "^2.0.0",
     "normalize.css": "^8.0.1",
     "sirv-cli": "^1.0.0"
   }
