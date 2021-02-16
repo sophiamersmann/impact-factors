@@ -1,38 +1,38 @@
 <script>
-  import { selectedStar } from './stores/selections';
-  import { duration } from './stores/configurations';
+  import { duration } from '../stores/configurations';
 
   import { fade } from 'svelte/transition';
-  import { quadOut, quadIn } from 'svelte/easing';
+  import { quadOut } from 'svelte/easing';
 
-  import { denormalize } from './utils/misc';
+  import { denormalize } from '../utils/misc';
+
+  export let article;
 
   let authors = '';
 
   const size = 250;
 
-  $: authors = $selectedStar?.authors.split(",").slice(0, 5) + ' et al';
+  $: authors = article?.authors.split(",").slice(0, 5) + ' et al';
 </script>
 
-{#if $selectedStar}
+{#if article}
   <div
     class="tooltip"
     style="width: {size}px"
     in:fade={{ duration: $duration, easing: quadOut }}
-    out:fade={{ duration: $duration, easing: quadIn }}
   >
     <div class="content">
       <div class="title bright">
-        <b>{$selectedStar.title}</b>
+        <b>{article.title}</b>
       </div>
       <div>
         {authors}.
-        <span class="journal">{denormalize($selectedStar.journal)}</span> {$selectedStar.volume},
-        {$selectedStar.page.start}-{$selectedStar.page.end}
-        ({$selectedStar.year})
+        <span class="journal">{denormalize(article.journal)}</span> {article.volume},
+        {article.page.start}-{article.page.end}
+        ({article.year})
       </div>
       <div class="cited-by">
-        Cited <b>{$selectedStar.citedBy}</b> times
+        Cited <b>{article.citedBy}</b> times
       </div>
       </div>
     </div>

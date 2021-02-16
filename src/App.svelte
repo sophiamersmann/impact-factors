@@ -2,7 +2,6 @@
   import Catch from './Catch.svelte';
   import SidePanel from './SidePanel.svelte';
   import Visualization from './Visualization.svelte';
-  import Tooltip from './Tooltip.svelte';
 
   import { panelWidth, size } from './stores/dimensions';
   import { minWidth } from './inputs/constants';
@@ -38,7 +37,6 @@
         <Visualization {data} />
       </main>
     {/await}
-    <Tooltip />
   {/if}
 </div>
 
