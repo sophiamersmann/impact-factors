@@ -25,9 +25,9 @@
     id={pathId}
     d={arcLine(radius, angle, angle + Math.PI)} />
   <text
-    fill-opacity={opacity}
-    style="fill: {color}"
     dy={hanging ? 8 : 0}
+    fill-opacity={opacity}
+    fill={color}
   >
     <textPath
       xlink:href={`#${pathId}`}

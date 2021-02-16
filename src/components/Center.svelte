@@ -3,6 +3,8 @@
 
   import NumberPair from './NumberPair.svelte';
 
+  import translate from '../actions/translate';
+
   import { innerRadius } from '../stores/dimensions';
 
   export let selectedData = [];
@@ -24,7 +26,7 @@
 <g class="center">
   <g
     class="g-impact"
-    style="transform: translate(0, {-gOffset}px)"
+    use:translate={{ dy: -gOffset }}
   >
     <text dy={-textOffset}>Impact Factor</text>
     <NumberPair
@@ -36,7 +38,7 @@
 
   <g
     class="g-count"
-    style="transform: translate(0, {gOffset}px)"
+    use:translate={{ dy: gOffset }}
   >
     <text dy={-textOffset}>based on </text>
     <NumberPair

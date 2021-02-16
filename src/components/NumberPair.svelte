@@ -4,6 +4,7 @@
   import { tweened } from "svelte/motion";
   import { fly } from "svelte/transition";
 
+  import translate from '../actions/translate';
   import { maxCitations } from '../stores/selections';
   import { duration, longDuration } from '../stores/configurations';
   import { quadOut } from "svelte/easing";
@@ -77,14 +78,19 @@
       >
         {Math.round($reactiveNumber)}
       </text> 
-      <g transform="translate({xOffset + reactiveNumberElemWidth + 10}, 0)">
+      <g use:translate={{ dx: xOffset + reactiveNumberElemWidth + 10 }}>
         {#if percentageChange > 0}
           <Arrow
             orient="down"
-            length={arrowLength} y={-arrowLength/2}
+            length={arrowLength}
+            y={-arrowLength/2}
             color="var(--danger)" />
         {/if}
-        <text class="change {percentageChange ? '' : 'zero'}" dx="5">
+        <text
+          class="change"
+          class:zero={!percentageChange}
+          dx="5"
+        >
           {format(100 * percentageChange)}%
         </text>
       </g>     
