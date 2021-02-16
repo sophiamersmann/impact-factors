@@ -9,7 +9,7 @@
   export let brightData = [];
 
   const gOffset = $innerRadius / 4;
-  const textOffset = 20;
+  const textOffset = 18;
 
   const starCount = (data) => data.length;
   const computeImpactFactor = (data) => mean(data, (d) => d.data.citedBy);

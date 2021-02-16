@@ -35,17 +35,17 @@
       <SelectJournal {data} />
     </div>
 
-    <div class="small">
+    <small>
       <p>
         Each star represents an article and encodes the number
         of received citations:
       </p>
       <Legend />
-    </div>
+    </small>
 
   </class>
 
-  <div class="bottom small">
+  <small class="bottom">
     <p>
       <sup>1</sup> Here, the impact factor reflects the average number
       of citations that articles published in 2018/19
@@ -58,7 +58,7 @@
         GitHub
       </a>
     </p>
-  </div>
+  </small>
 </div>
 
 <style>
@@ -88,6 +88,11 @@
 
   p {
     margin: calc(var(--spacing) / 2) 0;
+    font-size: 0.9rem;
+  }
+
+  small p {
+    font-size: inherit;
   }
 
   a {
@@ -98,9 +103,6 @@
 
   .select {
     margin: var(--spacing) 0;
-  }
-
-  .small {
     font-size: 0.9rem;
   }
 </style>

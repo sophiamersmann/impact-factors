@@ -60,6 +60,5 @@
 
   .label {
     margin-bottom: calc(var(--spacing) / 4);
-    font-size: 0.9rem;
   }
 </style>

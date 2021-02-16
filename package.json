@@ -24,7 +24,6 @@
     "svelte-select": "^3.16.1"
   },
   "dependencies": {
-    "normalize.css": "^8.0.1",
     "sirv-cli": "^1.0.0"
   }
 }
