@@ -5,8 +5,6 @@
   export let radius = 0;
   export let angle = 0;
   export let hanging = false;
-  export let color = 'var(--gray)';
-  export let opacity = 0.8;
 
   const offset = 3;
 
@@ -26,8 +24,6 @@
     d={arcLine(radius, angle, angle + Math.PI)} />
   <text
     dy={hanging ? 8 : 0}
-    fill-opacity={opacity}
-    fill={color}
   >
     <textPath
       xlink:href={`#${pathId}`}
@@ -47,5 +43,7 @@
   text {
     font-size: 0.7rem;
     pointer-events: none;
+    fill: var(--gray);
+    opacity: 0.8;
   }
 </style>

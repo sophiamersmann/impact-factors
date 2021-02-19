@@ -28,14 +28,12 @@
         y={-radius}
         length={arrowLength}
         orient="up"
-        color="var(--gray)"
         animate
       />
       <Label
         pathId="path-quantile-label-upper-{id}"
         {radius}
         angle="0"
-        opacity="1"
       >
         <tspan>{nExcludedStars} of {nStars}</tspan>
         articles excluded
@@ -48,5 +46,13 @@
 <style>
   tspan {
     font-weight: bold;
+  }
+
+  .quantile-label :global(.arrow) {
+    stroke: var(--gray);
+  }
+
+  .quantile-label :global(.label text) {
+    opacity: 1;
   }
 </style>

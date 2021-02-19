@@ -83,8 +83,7 @@
           <Arrow
             orient="down"
             length={arrowLength}
-            y={-arrowLength/2}
-            color="var(--danger)" />
+            y={-arrowLength/2} />
         {/if}
         <text
           class="change"
@@ -114,7 +113,8 @@
   }
 
   .static-number,
-  .reactive-number {
+  .reactive-number,
+  .change {
     font-weight: bold;
   }
 
@@ -128,11 +128,15 @@
     font-size: 0.8rem;
   }
 
-  .change{
+  .change {
     fill: var(--danger);
   }
 
   .change.zero {
     fill: currentColor;
+  }
+
+  .number-pair :global(.arrow) {
+    stroke: var(--danger);
   }
 </style>

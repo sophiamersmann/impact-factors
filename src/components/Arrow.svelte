@@ -8,7 +8,6 @@
   export let y = 0;
   export let orient = 'right';
   export let length = 20;
-  export let color = 'currentColor';
   export let animate = false;
 
   const markerLength = 5;
@@ -30,7 +29,6 @@
 <g
   class="arrow"
   transform="translate({x}, {y}) rotate({rotate})"
-  stroke={color}
 >
   <line
     x1="0"
@@ -58,6 +56,10 @@
 </g>
 
 <style>
+  .arrow {
+    stroke: currentColor;
+  }
+
   line {
     stroke-width: 1.2;
   }
