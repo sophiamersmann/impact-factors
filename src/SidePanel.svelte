@@ -53,6 +53,8 @@
     </p>
 
     <p>
+      Data from <a href="https://www.scopus.com/home.uri">Scopus</a>
+      <span class="separator">/</span>
       Code availbale on
       <a href="https://github.com/sophiamersmann/impact-factors" target="_blank">
         GitHub
@@ -104,5 +106,9 @@
   .select {
     margin: var(--spacing) 0;
     font-size: 0.9rem;
+  }
+
+  .separator {
+    font-weight: bold;
   }
 </style>
