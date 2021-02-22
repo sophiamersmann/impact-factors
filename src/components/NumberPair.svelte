@@ -139,4 +139,8 @@
   .number-pair :global(.arrow) {
     stroke: var(--danger);
   }
+
+  .number-pair :global(.arrow line) {
+    stroke-width: 1.6;
+  }
 </style>
