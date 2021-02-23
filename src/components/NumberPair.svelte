@@ -78,7 +78,7 @@
       >
         {Math.round($reactiveNumber)}
       </text> 
-      <g use:translate={{ dx: xOffset + reactiveNumberElemWidth + 10 }}>
+      <g transform="translate({xOffset + reactiveNumberElemWidth + 10} 0)">
         {#if percentageChange > 0}
           <Arrow
             orient="down"
