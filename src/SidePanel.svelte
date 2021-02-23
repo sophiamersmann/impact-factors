@@ -53,7 +53,7 @@
     </p>
 
     <p>
-      Data from <a href="https://www.scopus.com/home.uri">Scopus</a>
+      Data from <a href="https://www.scopus.com/home.uri" target="_blank">Scopus</a>
       <span class="separator">/</span>
       Code availbale on
       <a href="https://github.com/sophiamersmann/impact-factors" target="_blank">
