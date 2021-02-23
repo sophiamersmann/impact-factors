@@ -2,6 +2,8 @@
 
 Live at: https://sophiamersmann.github.io/impact-factors/
 
+![Star map](public/social-media-preview-1076x538.png)
+
 ## Data
 
 The visualisation shows articles published in 2018/19 by a few selected journals (The Lancet, Cell, Nature, Science).
